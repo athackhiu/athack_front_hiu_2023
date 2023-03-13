@@ -138,7 +138,8 @@ const App = () => {
               <h1>Your assistant</h1>
               <br />
               <img style={{
-                borderRadius: 50
+                borderRadius: 50,
+                maxWidth: '90%'
               }} src={botImage} alt="bot" width={250} />
               <br />
               <br />
