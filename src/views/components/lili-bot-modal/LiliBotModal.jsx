@@ -94,6 +94,7 @@ const LiliBotModal = () => {
 
   const onSendMessage = async () => {
     resetTranscript();
+    setQuestionText('')
     recognition.stopListening();
     console.log(questionText);
     setIsLoadingResponse(true);
