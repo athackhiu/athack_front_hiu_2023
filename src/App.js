@@ -7,11 +7,26 @@ import LiliBotModal from "./views/components/lili-bot-modal/LiliBotModal";
 import { OPENAI_KEY, OPENAI_URL } from "./config";
 import Spinner from "./@core/components/spinner/Loading-spinner";
 import botImage from "./images/git_bot_chat_2.gif";
+// import { useSkin } from "@hooks/skin";
 
 const App = () => {
+  // const { setSkin } = useSkin();
+  useEffect(() => {
+    // localStorage.setItem("skin", `"dark"`);
+    // setSkin("dark");
+  }, []);
   const Bot = () => {
+    const [isHover, setIsHover] = useState(false);
+
+    const handleMouseEnter = () => {
+      setIsHover(true);
+    };
+    const handleMouseLeave = () => {
+      setIsHover(false);
+    };
+
     const [open, setOpen] = useState(false);
-    const { speak } = useSpeechSynthesis();
+    const { speak, cancel } = useSpeechSynthesis();
     const greetingText =
       "Hi, I am Athena, your assistant . How can I help you today ?";
     const [questionText, setBotText] = useState("");
@@ -89,10 +104,14 @@ const App = () => {
           justifyContent: "center",
           alignItems: "center",
           cursor: "pointer",
+          transition: "all linear .1s",
+          transform: isHover ? `scale(1.2)` : `scale(1)`,
         }}
         onClick={() => {
           setOpen(true);
         }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
           <g fill="none" fillRule="evenodd">
@@ -123,9 +142,12 @@ const App = () => {
         <Modal
           isOpen={open}
           toggle={() => {
+            cancel()
             setOpen(!open);
           }}
-          style={{}}
+          style={{
+            borderRadius: 50,
+          }}
           className="modal-dialog-centered"
         >
           <ModalHeader className="bg-transparent"></ModalHeader>
