@@ -24,7 +24,7 @@ import {
 } from 'reactstrap'
 
 // ** Third Party Components
-import Select, { components } from 'react-select'
+import Select, {  } from 'react-select'
 import { FileText, Users, Link } from 'react-feather'
 
 // ** Utils
