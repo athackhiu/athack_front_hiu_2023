@@ -6,9 +6,10 @@ import { useSpeechSynthesis } from "react-speech-kit";
 import { OPENAI_KEY, OPENAI_URL } from "../../../config";
 import Spinner from "../../../@core/components/spinner/Loading-spinner";
 import botImageLight from "../../../images/gif_bot_chat_light.gif";
-import botImageDark from "../../../images/gif_bot_chat_light.gif";
+import botImageDark from "../../../images/gif_bot_chat_dark.gif";
+import { useSkin } from "@hooks/useSkin";
 import mic_animation from "../../../images/mic_animation.gif";
-import ReactLoading from 'react-loading';
+import ReactLoading from "react-loading";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -26,7 +27,7 @@ const LiliBotModal = () => {
   const [questionText, setQuestionText] = useState("");
   const [botResponse, setBotResponse] = useState("");
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
-
+  const skin = useSkin()
   //
   useEffect(() => {
     if (open) {
@@ -37,6 +38,8 @@ const LiliBotModal = () => {
     }
   }, [open]);
 
+  useEffect(() => {
+  }, [skin]);
   useEffect(() => {
     setQuestionText(transcript);
   }, [transcript]);
@@ -95,7 +98,7 @@ const LiliBotModal = () => {
 
   const onSendMessage = async () => {
     resetTranscript();
-    setQuestionText('')
+    setQuestionText("");
     recognition.stopListening();
     console.log(questionText);
     setIsLoadingResponse(true);
@@ -190,7 +193,7 @@ const LiliBotModal = () => {
                 borderRadius: 50,
                 maxWidth: "90%",
               }}
-              src={botImageLight}
+              src={skin.skin === "light" ? botImageLight : botImageDark}
               alt="bot"
               width={250}
             />
@@ -251,14 +254,19 @@ const LiliBotModal = () => {
               )}
               {isLoadingResponse ? (
                 <div>
-                  <ReactLoading type="bubbles" color="#218190" height={30} width={30} />
+                  <ReactLoading
+                    type="bubbles"
+                    color="#218190"
+                    height={30}
+                    width={30}
+                  />
                 </div>
               ) : (
                 <AiOutlineSend
                   style={{}}
                   onClick={async () => await onSendMessage()}
                   size={30}
-                  color={'#218190'}
+                  color={"#218190"}
                   cursor="pointer"
                 />
               )}
