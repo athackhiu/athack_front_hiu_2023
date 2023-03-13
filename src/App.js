@@ -128,11 +128,11 @@ const App = () => {
           }}
         >
           <ModalHeader className="bg-transparent"></ModalHeader>
-          <ModalBody style={{padding: 100}}>
+          <ModalBody style={{padding: 10}}>
             <center>
               <h1>Your assistant</h1>
               <br />
-              <img src={botImage} alt="bot" width={250} />
+              <img src={botImage} alt="bot" width={200} />
               <br />
               <br />
               <h5>{greetingText}</h5>
