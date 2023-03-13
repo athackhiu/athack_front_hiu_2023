@@ -12,7 +12,8 @@ const App = () => {
   const Bot = () => {
     const [open, setOpen] = useState(false);
     const { speak } = useSpeechSynthesis();
-    const greetingText = "Hi, I am Athena, your assistant . How can I help you today ?";
+    const greetingText =
+      "Hi, I am Athena, your assistant . How can I help you today ?";
     const [questionText, setBotText] = useState("");
     const [botResponse, setBotResponse] = useState("");
     const [isLoadingResponse, setIsLoadingResponse] = useState(false);
@@ -124,29 +125,42 @@ const App = () => {
           toggle={() => {
             setOpen(!open);
           }}
-          style={{
-          }}
+          style={{}}
+          className="modal-dialog-centered"
         >
           <ModalHeader className="bg-transparent"></ModalHeader>
-          <ModalBody style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}>
-            <center style={{
-              maxWidth: 300
-            }}>
+          <ModalBody
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <center
+              style={{
+                maxWidth: 300,
+              }}
+            >
               <h1>Your assistant</h1>
               <br />
-              <img style={{
-                borderRadius: 50,
-                maxWidth: '90%'
-              }} src={botImage} alt="bot" width={250} />
+              <img
+                style={{
+                  borderRadius: 50,
+                  maxWidth: "90%",
+                }}
+                src={botImage}
+                alt="bot"
+                width={250}
+              />
               <br />
               <br />
-              <h5 style={{
-                maxWidth: 200,
-                // textAlign:
-              }}>{greetingText}</h5>
+              <h5
+                style={{
+                  maxWidth: 200,
+                  // textAlign:
+                }}
+              >
+                {greetingText}
+              </h5>
               <br />
               <Input
                 type="text"
@@ -157,7 +171,9 @@ const App = () => {
               />
               <br />
               {isLoadingResponse ? (
-                <Spinner />
+                <div>
+                  <Spinner />
+                </div>
               ) : (
                 <button
                   className="btn btn-primary btn-lg"
