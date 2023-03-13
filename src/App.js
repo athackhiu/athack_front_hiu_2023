@@ -6,12 +6,13 @@ import Router from "./router/Router";
 import LiliBotModal from "./views/components/lili-bot-modal/LiliBotModal";
 import { OPENAI_KEY, OPENAI_URL } from "./config";
 import Spinner from "./@core/components/spinner/Loading-spinner";
+import botImage from "./images/robot.png";
 
 const App = () => {
   const Bot = () => {
     const [open, setOpen] = useState(false);
     const { speak } = useSpeechSynthesis();
-    const greetingText = "Hi, how can I help you today ?";
+    const greetingText = "Hi, I am Athena, your assistant . How can I help you today ?";
     const [questionText, setBotText] = useState("");
     const [botResponse, setBotResponse] = useState("");
     const [isLoadingResponse, setIsLoadingResponse] = useState(false);
@@ -123,11 +124,16 @@ const App = () => {
           toggle={() => {
             setOpen(!open);
           }}
+          style={{
+          }}
         >
           <ModalHeader className="bg-transparent"></ModalHeader>
-          <ModalBody>
+          <ModalBody style={{padding: 100}}>
             <center>
-              <h1>Lili Assistant</h1>
+              <h1>Your assistant</h1>
+              <br />
+              <img src={botImage} alt="bot" width={250} />
+              <br />
               <br />
               <h5>{greetingText}</h5>
               <br />
@@ -136,6 +142,7 @@ const App = () => {
                 onChange={(e) => {
                   handleChangeBotText(e.target.value);
                 }}
+                placeholder="Type your question here"
               />
               <br />
               {isLoadingResponse ? (
@@ -145,7 +152,7 @@ const App = () => {
                   className="btn btn-primary btn-lg"
                   onClick={async () => await onSendMessage()}
                 >
-                  Speak
+                  Ask
                 </button>
               )}
             </center>
