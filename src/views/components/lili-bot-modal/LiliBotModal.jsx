@@ -79,9 +79,9 @@ const LiliBotModal = () => {
     };
     const data = {
       model: "text-davinci-003",
-      prompt: `${questionText}`,
-      temperature: 1,
-      max_tokens: 50,
+      prompt: `Answer this question : ${questionText}`,
+      temperature: 0.75,
+      max_tokens: 1000,
       stop: ".",
     };
     const test = await fetch(`${OPENAI_URL}`, {
@@ -221,7 +221,7 @@ const LiliBotModal = () => {
                 type="textaera"
                 name="text"
                 placeholder="Type or use the voice recognition ..."
-                defaultValue={questionText}
+                value={questionText}
                 onChange={(e) => {
                   handleChangeTranscriptText(e.target.value);
                 }}
