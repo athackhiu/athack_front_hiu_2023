@@ -7,7 +7,7 @@ import { OPENAI_KEY, OPENAI_URL } from "../../../config";
 import Spinner from "../../../@core/components/spinner/Loading-spinner";
 import botImage from "../../../images/git_bot_chat_2.gif";
 import mic_animation from "../../../images/mic_animation.gif";
-
+import ReactLoading from 'react-loading';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -93,8 +93,8 @@ const LiliBotModal = () => {
   };
 
   const onSendMessage = async () => {
-    resetTranscript()
-    recognition.stopListening()
+    resetTranscript();
+    recognition.stopListening();
     console.log(questionText);
     setIsLoadingResponse(true);
     try {
@@ -249,16 +249,16 @@ const LiliBotModal = () => {
               )}
               {isLoadingResponse ? (
                 <div>
-                  <Spinner />
+                  <ReactLoading type="bubbles" color="#218190" height={30} width={30} />
                 </div>
               ) : (
-                <button
+                <AiOutlineSend
                   style={{}}
-                  className="btn btn-primary btn-lg"
                   onClick={async () => await onSendMessage()}
-                >
-                  <AiOutlineSend />
-                </button>
+                  size={30}
+                  color={'#218190'}
+                  cursor="pointer"
+                />
               )}
               {/* <Button onClick={() => resetTranscript()}>Reset</Button> */}
             </div>
