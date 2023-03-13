@@ -6,7 +6,7 @@ import Router from "./router/Router";
 import LiliBotModal from "./views/components/lili-bot-modal/LiliBotModal";
 import { OPENAI_KEY, OPENAI_URL } from "./config";
 import Spinner from "./@core/components/spinner/Loading-spinner";
-import botImage from "./images/robot.png";
+import botImage from "./images/git_bot_chat_2.gif";
 
 const App = () => {
   const Bot = () => {
@@ -81,8 +81,8 @@ const App = () => {
           height: 60,
           backgroundColor: "blue",
           position: "fixed",
-          bottom: 50,
-          right: 50,
+          bottom: 30,
+          right: 30,
           borderRadius: "50%",
           display: "flex",
           justifyContent: "center",
@@ -128,14 +128,24 @@ const App = () => {
           }}
         >
           <ModalHeader className="bg-transparent"></ModalHeader>
-          <ModalBody style={{padding: 100}}>
-            <center>
+          <ModalBody style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <center style={{
+              maxWidth: 300
+            }}>
               <h1>Your assistant</h1>
               <br />
-              <img src={botImage} alt="bot" width={250} />
+              <img style={{
+                borderRadius: 50
+              }} src={botImage} alt="bot" width={250} />
               <br />
               <br />
-              <h5>{greetingText}</h5>
+              <h5 style={{
+                maxWidth: 200,
+                // textAlign:
+              }}>{greetingText}</h5>
               <br />
               <Input
                 type="text"
@@ -152,7 +162,7 @@ const App = () => {
                   className="btn btn-primary btn-lg"
                   onClick={async () => await onSendMessage()}
                 >
-                  Ask
+                  Tap to ask
                 </button>
               )}
             </center>
