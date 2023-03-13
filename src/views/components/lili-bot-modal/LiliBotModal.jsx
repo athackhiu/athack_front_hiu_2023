@@ -8,7 +8,9 @@ import Spinner from "../../../@core/components/spinner/Loading-spinner";
 import botImageLight from "../../../images/gif_bot_chat_light.gif";
 import botImageDark from "../../../images/gif_bot_chat_dark.gif";
 import { useSkin } from "@hooks/useSkin";
-import mic_animation from "../../../images/mic_animation.gif";
+// import mic_animation from "../../../images/mic_animation.gif";
+import mic_animation_light from "../../../images/mic_animation_light.gif";
+import mic_animation_dark from "../../../images/mic_animation_dark.gif";
 import ReactLoading from "react-loading";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -232,8 +234,12 @@ const LiliBotModal = () => {
               />
               {listening ? (
                 <img
-                  src={mic_animation}
-                  style={{ width: 70, cursor: "pointer" }}
+                  src={skin.skin === "light" ? mic_animation_light : mic_animation_dark}
+                  style={{ width: 30, 
+                    cursor: "pointer",
+                    marginLeft: 10,
+                    marginRight: 10,
+                }}
                   onClick={() => {
                     recognition.stopListening();
                   }}
@@ -242,8 +248,9 @@ const LiliBotModal = () => {
                 <FaMicrophone
                   style={{
                     marginLeft: 10,
+                    marginRight: 10,
                     cursor: "pointer",
-                    width: 70,
+                    width: 40,
                   }}
                   onClick={() => {
                     recognition.startListening();
