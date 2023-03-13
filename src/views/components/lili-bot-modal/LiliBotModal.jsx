@@ -5,7 +5,8 @@ import { useSpeechSynthesis } from "react-speech-kit";
 // ** Router Import
 import { OPENAI_KEY, OPENAI_URL } from "../../../config";
 import Spinner from "../../../@core/components/spinner/Loading-spinner";
-import botImage from "../../../images/git_bot_chat_2.gif";
+import botImageLight from "../../../images/gif_bot_chat_light.gif";
+import botImageDark from "../../../images/gif_bot_chat_light.gif";
 import mic_animation from "../../../images/mic_animation.gif";
 import ReactLoading from 'react-loading';
 import SpeechRecognition, {
@@ -189,7 +190,7 @@ const LiliBotModal = () => {
                 borderRadius: 50,
                 maxWidth: "90%",
               }}
-              src={botImage}
+              src={botImageLight}
               alt="bot"
               width={250}
             />
