@@ -15,6 +15,7 @@ import ReactLoading from "react-loading";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import Typewriter from "typewriter-effect";
 import { FaMicrophone } from "react-icons/fa";
 import { AiOutlineSend } from "react-icons/ai";
 
@@ -30,9 +31,10 @@ const LiliBotModal = () => {
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
   const skin = useSkin();
   const [lang, setLang] = useState(navigator.language);
-
+  const [previousQuestion, setPreviousQuestion] = useState("");
   // Your personnal informations
   const personnalInfos = {
+    langage: lang,
     websiteName: "At-Hack",
     myName: "Lili",
     websiteOwners: "Cedric, Tsanta, Liantsoa, Ericka",
@@ -87,6 +89,8 @@ const LiliBotModal = () => {
     } else {
       recognition.stopListening();
       resetTranscript();
+      setBotResponse("");
+      setQuestionText("");
     }
   }, [open]);
 
@@ -108,14 +112,14 @@ const LiliBotModal = () => {
     setIsHover(false);
   };
 
-  // UseEffect that makes the bot speak
+  // UseEffect that makes the bot speak when the bot response is defined
   useEffect(() => {
     if (botResponse && speakSpeechSynthesisVoiceOptions) {
       speak({
         text: `${botResponse}`,
         voice: speakSpeechSynthesisVoiceOptions,
       });
-      setBotResponse("");
+      // setBotResponse("");
     }
   }, [botResponse]);
 
@@ -146,7 +150,7 @@ const LiliBotModal = () => {
         personnalInfos
       )} These are our previous discussions formatted as [ [question, response], etc ... ]: ${JSON.stringify(
         discussion
-      )}. Now, answer this question but in the "${lang}" language : ${questionText}`,
+      )}. my next question is ${questionText}, answer in well formatted sentences`,
       temperature: 0,
       max_tokens: 1000,
       stop: ".",
@@ -163,7 +167,6 @@ const LiliBotModal = () => {
   const onSendMessage = async () => {
     const tempQuestion = questionText;
     resetTranscript();
-    setQuestionText("");
     recognition.stopListening();
     // console.log(questionText);
     setIsLoadingResponse(true);
@@ -179,9 +182,11 @@ const LiliBotModal = () => {
               ...discussion.current,
               [`${tempQuestion}, ${text}`],
             ];
+            setPreviousQuestion(questionText);
           })
           .finally(() => {
             setIsLoadingResponse(false);
+            setQuestionText("");
           });
       }
     } catch (err) {
@@ -254,6 +259,7 @@ const LiliBotModal = () => {
             style={{
               width: 350,
               maxWidth: "100%",
+              paddingBottom: 70,
             }}
           >
             <h1>Your assistant</h1>
@@ -349,6 +355,24 @@ const LiliBotModal = () => {
               {/* <Button onClick={() => resetTranscript()}>Reset</Button> */}
             </div>
             <br />
+            <br />
+            {botResponse && previousQuestion && (
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'start'
+              }}>
+                <h5>Q : {previousQuestion}</h5>
+                <br />
+                <Typewriter
+                  options={{
+                    strings: `> ${botResponse}`,
+                    autoStart: true,
+                    delay: 0.4,
+                  }}
+                />
+              </div>
+            )}
           </center>
         </ModalBody>
       </Modal>
