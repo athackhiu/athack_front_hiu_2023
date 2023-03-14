@@ -31,11 +31,15 @@ const LiliBotModal = () => {
   const skin = useSkin();
   const [lang, setLang] = useState(navigator.language);
 
+  // Your personnal informations
+  const personnalInfos = {
+    websiteName: "At-Hack",
+    myName: "Lili",
+    websiteOwners: "Cedric, Tsanta, Liantsoa, Ericka",
+  };
+
   // Les informations de la discussion
-  const discussion = useRef([
-    ["What is your name ?", "My name is Lili"],
-    ["What is this site?", "At-Hack's website"],
-  ]);
+  const discussion = useRef([]);
 
   const [
     speakSpeechSynthesisVoiceOptions,
@@ -138,7 +142,9 @@ const LiliBotModal = () => {
     };
     const data = {
       model: "text-davinci-003",
-      prompt: `These are our previous discussions formatted as [ [question, response], etc ... ]: ${JSON.stringify(
+      prompt: `Your personnal infos : ${JSON.stringify(
+        personnalInfos
+      )} These are our previous discussions formatted as [ [question, response], etc ... ]: ${JSON.stringify(
         discussion
       )}. Now, answer this question but in the "${lang}" language : ${questionText}`,
       temperature: 0,
