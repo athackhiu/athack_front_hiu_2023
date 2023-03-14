@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, useEffect, useState } from "react";
+import React, { Fragment, Suspense, useEffect, useRef, useState } from "react";
 import "regenerator-runtime";
 import { Button, Input, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { useSpeechSynthesis } from "react-speech-kit";
@@ -30,6 +30,13 @@ const LiliBotModal = () => {
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
   const skin = useSkin();
   const [lang, setLang] = useState(navigator.language);
+
+  // Les informations de la discussion
+  const discussion = useRef([
+    ["What is your name ?", "My name is Lili"],
+    ["What is this site?", "At-Hack's website"],
+  ]);
+
   const [
     speakSpeechSynthesisVoiceOptions,
     setSpeackSpeechSynthesisVoiceOptions,
@@ -97,6 +104,7 @@ const LiliBotModal = () => {
     setIsHover(false);
   };
 
+  // UseEffect that makes the bot speak
   useEffect(() => {
     if (botResponse && speakSpeechSynthesisVoiceOptions) {
       speak({
@@ -122,6 +130,7 @@ const LiliBotModal = () => {
     }
   }, [open, speakSpeechSynthesisVoiceOptions]);
 
+  // Get AI Response function
   const getAiResponse = async () => {
     const headers = {
       "Content-Type": "application/json",
@@ -129,8 +138,10 @@ const LiliBotModal = () => {
     };
     const data = {
       model: "text-davinci-003",
-      prompt: `Answer this question : ${questionText}`,
-      temperature: 0.75,
+      prompt: `These are our previous discussions formatted as [ [question, response], etc ... ]: ${JSON.stringify(
+        discussion
+      )}. Now, answer this question but in the "${lang}" language : ${questionText}`,
+      temperature: 0,
       max_tokens: 1000,
       stop: ".",
     };
@@ -142,7 +153,9 @@ const LiliBotModal = () => {
     return test;
   };
 
+  // Function when the message is sent
   const onSendMessage = async () => {
+    const tempQuestion = questionText;
     resetTranscript();
     setQuestionText("");
     recognition.stopListening();
@@ -154,7 +167,12 @@ const LiliBotModal = () => {
         resp
           .json()
           .then((jsonResp) => {
-            setBotResponse(jsonResp.choices[0].text.trim());
+            const text = jsonResp.choices[0].text.trim();
+            setBotResponse(text);
+            discussion.current = [
+              ...discussion.current,
+              [`${tempQuestion}, ${text}`],
+            ];
           })
           .finally(() => {
             setIsLoadingResponse(false);
