@@ -23,25 +23,61 @@ const LiliBotModal = () => {
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
   const [isHover, setIsHover] = useState(false);
   const [open, setOpen] = useState(false);
-  const { speak, cancel } = useSpeechSynthesis();
-  const greetingText =
-    "Hi, I am Lili, your assistant . How can I help you today ?";
+  const { speak, cancel, voices } = useSpeechSynthesis();
+  const [greetingText, setGreetingText] = useState("");
   const [questionText, setQuestionText] = useState("");
   const [botResponse, setBotResponse] = useState("");
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
-  const skin = useSkin()
-  //
+  const skin = useSkin();
+  const [lang, setLang] = useState(navigator.language);
+  const [
+    speakSpeechSynthesisVoiceOptions,
+    setSpeackSpeechSynthesisVoiceOptions,
+  ] = useState(null);
+
+  // setting the language
+  useEffect(() => {
+    setLang(navigator.language);
+  }, []);
+
+  // setting greeting text
+  useEffect(() => {
+    const GRETTING = {
+      FR: "Bonjour , je suis Lili, votre assitant vocal, comment puis-je vous aider ?",
+      ENG: "Hello , I am Lili, your vocal assistant, how can I help you today ? ",
+    };
+    if (lang) {
+      if (/.*fr.*/.test(lang)) {
+        setGreetingText(GRETTING.FR);
+      } else {
+        setGreetingText(GRETTING.ENG);
+      }
+    }
+  }, [lang]);
+
+  // setting the voice setting based on the language
+  useEffect(() => {
+    if (voices.length > 0) {
+      const res = [...voices].filter((voice) => new RegExp(`.*${lang}.*`).test(voice.lang)
+      );
+      if (res.length > 0) {
+        const newVoice = res[0];
+        setSpeackSpeechSynthesisVoiceOptions(newVoice);
+      } else {
+        setSpeackSpeechSynthesisVoiceOptions(voices[0]);
+      }
+    }
+  }, [voices, lang]);
+
+  // stop the mic if it's not opened
   useEffect(() => {
     if (open) {
-      // recognition.startListening({ continuous: true });
     } else {
       recognition.stopListening();
       resetTranscript();
     }
   }, [open]);
 
-  useEffect(() => {
-  }, [skin]);
   useEffect(() => {
     setQuestionText(transcript);
   }, [transcript]);
@@ -61,8 +97,11 @@ const LiliBotModal = () => {
   };
 
   useEffect(() => {
-    if (botResponse) {
-      speak({ text: `${botResponse}` });
+    if (botResponse && speakSpeechSynthesisVoiceOptions) {
+      speak({
+        text: `${botResponse}`,
+        voice: speakSpeechSynthesisVoiceOptions,
+      });
       setBotResponse("");
     }
   }, [botResponse]);
@@ -72,11 +111,15 @@ const LiliBotModal = () => {
     setQuestionText(newText);
   };
 
+  // Greeting vocal
   useEffect(() => {
-    if (open) {
-      speak({ text: `${greetingText}` });
+    if (open && speakSpeechSynthesisVoiceOptions) {
+      speak({
+        text: `${greetingText}`,
+        voice: speakSpeechSynthesisVoiceOptions,
+      });
     }
-  }, [open]);
+  }, [open, speakSpeechSynthesisVoiceOptions]);
 
   const getAiResponse = async () => {
     const headers = {
@@ -102,7 +145,7 @@ const LiliBotModal = () => {
     resetTranscript();
     setQuestionText("");
     recognition.stopListening();
-    console.log(questionText);
+    // console.log(questionText);
     setIsLoadingResponse(true);
     try {
       const resp = await getAiResponse();
@@ -210,13 +253,6 @@ const LiliBotModal = () => {
               {greetingText}
             </h5>
             <br />
-            {/* <Input
-              type="text"
-              onChange={(e) => {
-                handleChangeTranscriptText(e.target.value);
-              }}
-              placeholder="Type your question here"
-            /> */}
             <div
               style={{
                 display: "flex",
@@ -234,12 +270,17 @@ const LiliBotModal = () => {
               />
               {listening ? (
                 <img
-                  src={skin.skin === "light" ? mic_animation_light : mic_animation_dark}
-                  style={{ width: 30, 
+                  src={
+                    skin.skin === "light"
+                      ? mic_animation_light
+                      : mic_animation_dark
+                  }
+                  style={{
+                    width: 30,
                     cursor: "pointer",
                     marginLeft: 10,
                     marginRight: 10,
-                }}
+                  }}
                   onClick={() => {
                     recognition.stopListening();
                   }}
@@ -253,7 +294,10 @@ const LiliBotModal = () => {
                     width: 40,
                   }}
                   onClick={() => {
-                    recognition.startListening();
+                    recognition.startListening({
+                      language: lang,
+                      continuous: false
+                    });
                   }}
                   size={20}
                   color="purple"
