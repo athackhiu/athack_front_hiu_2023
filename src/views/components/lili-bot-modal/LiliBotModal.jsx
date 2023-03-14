@@ -37,7 +37,7 @@ const LiliBotModal = () => {
 
   // setting the language
   useEffect(() => {
-    setLang(navigator.language);
+    setLang('fr');
   }, []);
 
   // setting greeting text
@@ -64,7 +64,7 @@ const LiliBotModal = () => {
         const newVoice = res[0];
         setSpeackSpeechSynthesisVoiceOptions(newVoice);
       } else {
-        setSpeackSpeechSynthesisVoiceOptions(voices[6]);
+        setSpeackSpeechSynthesisVoiceOptions(voices[0]);
       }
     }
   }, [voices, lang]);
