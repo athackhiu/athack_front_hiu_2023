@@ -37,7 +37,7 @@ const LiliBotModal = () => {
 
   // setting the language
   useEffect(() => {
-    setLang('fr');
+    setLang(navigator.language);
   }, []);
 
   // setting greeting text
