@@ -268,6 +268,7 @@ const LiliBotModal = () => {
               style={{
                 borderRadius: 50,
                 maxWidth: "90%",
+                height: 100
               }}
               src={skin.skin === "light" ? botImageLight : botImageDark}
               alt="bot"
