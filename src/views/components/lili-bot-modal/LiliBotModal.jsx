@@ -64,7 +64,7 @@ const LiliBotModal = () => {
         const newVoice = res[0];
         setSpeackSpeechSynthesisVoiceOptions(newVoice);
       } else {
-        setSpeackSpeechSynthesisVoiceOptions(voices[0]);
+        setSpeackSpeechSynthesisVoiceOptions(voices[6]);
       }
     }
   }, [voices, lang]);
