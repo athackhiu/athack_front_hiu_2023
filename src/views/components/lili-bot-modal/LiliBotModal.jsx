@@ -58,7 +58,8 @@ const LiliBotModal = () => {
   // setting the voice setting based on the language
   useEffect(() => {
     if (voices.length > 0) {
-      const res = [...voices].filter((voice) => new RegExp(`.*${lang}.*`).test(voice.lang)
+      const res = [...voices].filter((voice) =>
+        new RegExp(`.*${lang}.*`).test(voice.lang)
       );
       if (res.length > 0) {
         const newVoice = res[0];
@@ -296,7 +297,7 @@ const LiliBotModal = () => {
                   onClick={() => {
                     recognition.startListening({
                       language: lang,
-                      continuous: false
+                      continuous: false,
                     });
                   }}
                   size={20}
