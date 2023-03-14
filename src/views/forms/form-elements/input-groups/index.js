@@ -18,6 +18,7 @@ import InputGroupMerged from './InputGroupMerged'
 import InputGroupButtons from './InputGroupButtons'
 import InputCbAndRadio from './InputGroupCbAndRadio'
 import InputGroupDropdown from './InputGroupDropdown'
+import InputGroupVoice from './InputGroupVoice'
 
 // ** Source Code
 import {
@@ -65,6 +66,11 @@ const InputGroups = () => {
         <Col sm='12'>
           <Card title='Input Group Dropdowns' code={inputGroupDropdowns}>
             <InputGroupDropdown />
+          </Card>
+        </Col>
+        <Col sm='12'>
+          <Card title='Input Group Voice' code={inputGroupDropdowns}>
+            <InputGroupVoice />
           </Card>
         </Col>
       </Row>
