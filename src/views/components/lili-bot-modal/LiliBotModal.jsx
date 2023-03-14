@@ -37,7 +37,7 @@ const LiliBotModal = () => {
     langage: lang,
     websiteName: "At-Hack",
     myName: "Lili",
-    websiteOwners: "Cedric, Tsanta, Liantsoa, Ericka",
+    websiteOwners: "Cedric, Tsanta, Liantsoa, Ericka, Hariaja",
   };
 
   // Les informations de la discussion
@@ -356,21 +356,39 @@ const LiliBotModal = () => {
             </div>
             <br />
             <br />
-            {botResponse && previousQuestion && (
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'start'
-              }}>
-                <h5>Q : {previousQuestion}</h5>
-                <br />
-                <Typewriter
-                  options={{
-                    strings: `> ${botResponse}`,
-                    autoStart: true,
-                    delay: 0.4,
+            {botResponse && previousQuestion ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "start",
+                }}
+              >
+                <h5
+                  style={{
+                    textAlign: "start",
                   }}
-                />
+                >
+                  Q : {previousQuestion}
+                </h5>
+                <br />
+                <div
+                  style={{
+                    textAlign: "start",
+                  }}
+                >
+                  <Typewriter
+                    options={{
+                      strings: `> ${botResponse}`,
+                      autoStart: true,
+                      delay: 0.4,
+                    }}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div>
+                Cats are better than dogs, they are easier to digest ...
               </div>
             )}
           </center>
