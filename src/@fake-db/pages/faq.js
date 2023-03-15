@@ -4,137 +4,54 @@ const data = {
     // payment
     payment: {
       icon: 'CreditCard',
-      title: 'Payment',
-      subtitle: 'Which license do I need?',
+      title: 'Notre équipe',
+      subtitle: '',
       qandA: [
         {
-          question: 'Does my subscription automatically renew?',
-          ans: 'Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.'
+          question: 'Qui êtes vous?',
+          ans: 'Nous sommes l’équipe At-Hack étudiant à L’ITUniversity.'
         },
         {
-          question: 'Can I store the item on an intranet so everyone has access?',
-          ans: 'Sweet pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll topping fruitcake. Caramels liquorice biscuit ice cream fruitcake cotton candy tart. Donut caramels gingerbread jelly-o gingerbread pudding. Gummi bears pastry marshmallow candy canes pie. Pie apple pie carrot cake.'
+          question: 'Qui sont les membres de votre équipe?',
+          ans: 'Notre équipe est composée de 5 personnes. Tsanta, Cédric, Hariaja, Liantsoa et Ericka.'
         },
         {
-          question: 'What does non-exclusive mean?',
-          ans: 'Tart gummies dragée lollipop fruitcake pastry oat cake. Cookie jelly jelly macaroon icing jelly beans soufflé cake sweet. Macaroon sesame snaps cheesecake tart cake sugar plum. Dessert jelly-o sweet muffin chocolate candy pie tootsie roll marzipan.'
+          question: 'Comment vous vous êtes rencontrées?',
+          ans: 'Lors d une pause café, nous nous sommes  retrouvés à la même table et ont commencé à échanger sur leur connaissance respective. Nous avons réalisé que nos compétences étaient complémentaires et qu il serait intéressant de travailler ensemble sur un projet commun.'
         },
         {
-          question: 'Is the Regular License the same thing as an editorial license?',
-          ans: 'Cheesecake muffin cupcake dragée lemon drops tiramisu cake gummies chocolate cake. Marshmallow tart croissant. Tart dessert tiramisu marzipan lollipop lemon drops. Cake bonbon bonbon gummi bears topping jelly beans brownie jujubes muffin. Donut croissant jelly-o cake marzipan. Liquorice marzipan cookie wafer tootsie roll. Tootsie roll sweet cupcake.'
-        },
-        {
-          question: 'Which license do I need for an end product that is only accessible to paying users?',
-          ans: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-        },
-        {
-          question: 'Which license do I need to use an item in a commercial?',
-          ans: 'At tempor commodo ullamcorper a lacus vestibulum. Ultrices neque ornare aenean euismod. Dui vivamus arcu felis bibendum. Turpis in eu mi bibendum neque egestas congue. Nullam ac tortor vitae purus faucibus ornare suspendisse sed.'
-        },
-        {
-          question: 'Can I re-distribute an item? What about under an Extended License?',
-          ans: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut enim. Dictum at tempor commodo ullamcorper a lacus vestibulum.'
+          question: 'Quel est le rôle des chacun dans votre équipe ? ',
+          ans: 'Tsanta est notre développeur back-End , Cédric est notre développeur back-End et intégrateur, Hariaja est notre designer , Liantsoa dévoloppeur front-End et gestionnaire de la communication et Ericka développeur front-End et créateur d’idées'
         }
+      
       ]
     },
     // delivery
     delivery: {
       icon: 'ShoppingBag',
-      title: 'Delivery',
-      subtitle: 'Which license do I need?',
+      title: 'Bot Lili',
+      subtitle: '',
       qandA: [
         {
-          question: 'Where has my order reached?',
-          ans: 'Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.'
+          question: 'Lili c’est quoi ?',
+          ans: 'Lili est une  assistante vocale qui sera à votre disposition pour répondre à toutes vos interrogations.'
         },
         {
           question:
-            'The shipment status shows that it has been returned/cancelled. What does it mean and who do I contact?',
-          ans: 'Sweet pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll topping fruitcake. Caramels liquorice biscuit ice cream fruitcake cotton candy tart. Donut caramels gingerbread jelly-o gingerbread pudding. Gummi bears pastry marshmallow candy canes pie. Pie apple pie carrot cake.'
+            'Comment Lili fonctionne t-elle?',
+          ans: 'Pour entamer une conversation avec Lili, vous devez tout d abord cliquer sur l icône située en bas à droite de la plateforme. Ensuite, vous avez le choix entre saisir votre message au clavier ou le dicter à voix haute pour qu il soit transformé en texte. Lili vous répondra ensuite rapidement.'
         },
         {
-          question: 'What if my shipment is marked as lost?',
-          ans: 'Tart gummies dragée lollipop fruitcake pastry oat cake. Cookie jelly jelly macaroon icing jelly beans soufflé cake sweet. Macaroon sesame snaps cheesecake tart cake sugar plum. Dessert jelly-o sweet muffin chocolate candy pie tootsie roll marzipan.'
-        },
-        {
-          question: 'My shipment status shows that it’s out for delivery. By when will I receive it?',
-          ans: 'Cheesecake muffin cupcake dragée lemon drops tiramisu cake gummies chocolate cake. Marshmallow tart croissant. Tart dessert tiramisu marzipan lollipop lemon drops. Cake bonbon bonbon gummi bears topping jelly beans brownie jujubes muffin. Donut croissant jelly-o cake marzipan. Liquorice marzipan cookie wafer tootsie roll. Tootsie roll sweet cupcake.'
-        },
-        {
-          question: 'What do I need to do to get the shipment delivered within a specific timeframe?',
-          ans: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-        }
-      ]
-    },
-    // cancellation and return
-    cancellationReturn: {
-      icon: 'RefreshCw',
-      title: 'Cancellation & Return',
-      subtitle: 'Which license do I need?',
-      qandA: [
-        {
-          question: 'Can my security guard or neighbour receive my shipment if I am not available?',
-          ans: 'Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.'
-        },
-        {
-          question: 'How can I get the contact number of my delivery agent?',
-          ans: 'Sweet pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll topping fruitcake. Caramels liquorice biscuit ice cream fruitcake cotton candy tart. Donut caramels gingerbread jelly-o gingerbread pudding. Gummi bears pastry marshmallow candy canes pie. Pie apple pie carrot cake.'
-        },
-        {
-          question: 'How can I cancel my shipment?',
-          ans: 'Tart gummies dragée lollipop fruitcake pastry oat cake. Cookie jelly jelly macaroon icing jelly beans soufflé cake sweet. Macaroon sesame snaps cheesecake tart cake sugar plum. Dessert jelly-o sweet muffin chocolate candy pie tootsie roll marzipan.'
-        },
-        {
-          question: 'I have received a defective/damaged product. What do I do?',
-          ans: 'Cheesecake muffin cupcake dragée lemon drops tiramisu cake gummies chocolate cake. Marshmallow tart croissant. Tart dessert tiramisu marzipan lollipop lemon drops. Cake bonbon bonbon gummi bears topping jelly beans brownie jujubes muffin. Donut croissant jelly-o cake marzipan. Liquorice marzipan cookie wafer tootsie roll. Tootsie roll sweet cupcake.'
-        },
-        {
-          question: 'How do I change my delivery address?',
-          ans: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-        },
-        {
-          question: 'What documents do I need to carry for self-collection of my shipment?',
-          ans: 'At tempor commodo ullamcorper a lacus vestibulum. Ultrices neque ornare aenean euismod. Dui vivamus arcu felis bibendum. Turpis in eu mi bibendum neque egestas congue. Nullam ac tortor vitae purus faucibus ornare suspendisse sed. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Tortor consequat id porta nibh. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Faucibus nisl tincidunt eget nullam non nisi. Enim nunc faucibus a pellentesque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Nec nam aliquam sem et tortor consequat id. Fringilla est ullamcorper eget nulla facilisi. Morbi tristique senectus et netus et.'
-        },
-        {
-          question: 'What are the timings for self-collecting shipments from the Delhivery Branch?',
-          ans: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut enim. Dictum at tempor commodo ullamcorper a lacus vestibulum.'
-        }
-      ]
-    },
-    // my orders
-    myOrders: {
-      icon: 'Package',
-      title: 'My Orders',
-      subtitle: 'Which license do I need?',
-      qandA: [
-        {
-          question: 'Can I avail of an open delivery?',
-          ans: 'Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.'
-        },
-        {
-          question: 'I haven’t received the refund of my returned shipment. What do I do?',
-          ans: 'Sweet pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll topping fruitcake. Caramels liquorice biscuit ice cream fruitcake cotton candy tart. Donut caramels gingerbread jelly-o gingerbread pudding. Gummi bears pastry marshmallow candy canes pie. Pie apple pie carrot cake.'
-        },
-        {
-          question: 'How can I ship my order to an international location?',
-          ans: 'Tart gummies dragée lollipop fruitcake pastry oat cake. Cookie jelly jelly macaroon icing jelly beans soufflé cake sweet. Macaroon sesame snaps cheesecake tart cake sugar plum. Dessert jelly-o sweet muffin chocolate candy pie tootsie roll marzipan.'
-        },
-        {
-          question: 'I missed the delivery of my order today. What should I do?',
-          ans: 'Cheesecake muffin cupcake dragée lemon drops tiramisu cake gummies chocolate cake. Marshmallow tart croissant. Tart dessert tiramisu marzipan lollipop lemon drops. Cake bonbon bonbon gummi bears topping jelly beans brownie jujubes muffin. Donut croissant jelly-o cake marzipan. Liquorice marzipan cookie wafer tootsie roll. Tootsie roll sweet cupcake.'
-        },
-        {
-          question: 'The delivery of my order is delayed. What should I do?',
-          ans: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+          question: 'Pourquoi discuter avec Lili?',
+          ans: 'La raison pour laquelle nous échangeons avec Lili est d améliorer notre orientation sur la plateforme et de rendre notre site plus automatisé.'
         }
       ]
     },
     // product and services
     productServices: {
       icon: 'Settings',
-      title: 'Product & Services',
-      subtitle: 'Which license do I need?',
+      title: 'Notre plateforme',
+      subtitle: '',
       qandA: [
         {
           question: 'How can I register a complaint against the courier executive who came to deliver my order?',
