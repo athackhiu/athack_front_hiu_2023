@@ -1,7 +1,5 @@
-// ** React Imports
 import { Fragment } from 'react'
 
-// ** Routes Imports
 import AppRoutes from './Apps'
 import FormRoutes from './Forms'
 import PagesRoutes from './Pages'
@@ -12,6 +10,8 @@ import UiElementRoutes from './UiElements'
 import ExtensionsRoutes from './Extensions'
 import PageLayoutsRoutes from './PageLayouts'
 import AuthenticationRoutes from './Authentication'
+import UsersRoutes from './Users'
+import AdminRoutes from './Admin'
 
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
@@ -33,12 +33,12 @@ const getLayout = {
 }
 
 // ** Document title
-const TemplateTitle = '%s - Vuexy React Admin Template'
+const TemplateTitle = 'Vuexy_MG'
 
 // ** Default Route
 const DefaultRoute = '/dashboard/ecommerce'
 
-// ** Merge Routes
+
 const Routes = [
   ...AuthenticationRoutes,
   ...DashboardRoutes,
@@ -49,7 +49,9 @@ const Routes = [
   ...PageLayoutsRoutes,
   ...FormRoutes,
   ...TablesRoutes,
-  ...ChartsRoutes
+  ...ChartsRoutes,
+  ...UsersRoutes,
+  ...AdminRoutes
 ]
 
 const getRouteMeta = route => {
