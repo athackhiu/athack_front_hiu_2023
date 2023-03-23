@@ -10,7 +10,7 @@ const Page1 = () => {
     <Row>
       <Col md='6' sm='12'>
         <Card title={"go"} >
-          <h1>Page1</h1>
+          <h1>Bienvenue en tant que administrateur</h1>
         </Card>
       </Col>
     </Row>
