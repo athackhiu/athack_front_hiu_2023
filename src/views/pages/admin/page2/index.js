@@ -15,6 +15,7 @@ const Page2 = () => {
     const directionsService = new window.google.maps.DirectionsService();
     const origin = new window.google.maps.LatLng(37.774929, -122.419416);
     const destination = new window.google.maps.LatLng(37.8199286,-122.4782551);
+    
     directionsService.route(
       {
         origin: origin,
@@ -23,9 +24,9 @@ const Page2 = () => {
       },
       (result, status) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
-          setDirections({
-            directions: result
-          });
+          setDirections(result);
+        } else {
+          console.error(`error fetching directions \${result}`);
         }
       }
     );
@@ -50,16 +51,19 @@ const Page2 = () => {
       <Col md='12' sm='12'>
         <Card title={"go"} >
           <h1>Map</h1>
-          <div style={{ height: '50vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyBStuzSA7bW5n2wddHiCSNBG-TPWh-sd64' }}
-          defaultCenter={{ lat: 37.774929, lng: -122.419416 }}
-          defaultZoom={12}
-          yesIWantToUseGoogleMapApiInternals={true}
-          onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
-        >
-        </GoogleMapReact>
-      </div>
+          <div style={{ height: '100vh', width: '100%' }}>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: 'AIzaSyBStuzSA7bW5n2wddHiCSNBG-TPWh-sd64', libraries: ['directions'] }}
+              defaultCenter={{ lat: 37.774929, lng: -122.419416 }}
+              defaultZoom={12}
+              yesIWantToUseGoogleMapApiInternals={true}
+              onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
+            >
+               
+              
+              {directions && <DirectionsRenderer directions={directions} />}
+            </GoogleMapReact>
+          </div>
         </Card>
       </Col>
     </Row>
