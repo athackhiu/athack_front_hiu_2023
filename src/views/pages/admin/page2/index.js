@@ -5,11 +5,10 @@ import GoogleMapReact from 'google-map-react';
 
 import Card from '@components/card-snippet'
 
-
 const Page2 = () => {
   return (
     <Row>
-      <Col md='6' sm='12'>
+      <Col md='12' sm='12'>
         <Card title={"go"} >
           <h1>Map</h1>
           <div style={{ height: '100vh', width: '100%' , borderRadius : '50%' }} >
