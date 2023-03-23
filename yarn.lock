@@ -534,12 +534,20 @@
     "@fullcalendar/scrollgrid" "~5.11.3"
     "tslib" "^2.1.0"
 
-"@googlemaps/js-api-loader@^1.7.0":
+"@googlemaps/js-api-loader@^1.7.0", "@googlemaps/js-api-loader@1.15.1":
   "integrity" "sha512-AsnEgNsB7S/VdrHGEQUaUM2e5tmjFGKBAfzR/AqO8O7TPq/jQGvoRw5liPBw4EMF38RDsHmKDV89q/X+qiUREQ=="
   "resolved" "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.15.1.tgz"
   "version" "1.15.1"
   dependencies:
     "fast-deep-equal" "^3.1.3"
+
+"@googlemaps/markerclusterer@2.0.15":
+  "integrity" "sha512-/I6Esi5FtyeVHsezN9Kut8zRJoqe7KkTIJXGVqpKFf6BjC7qQ1xRajLMkOz0s8XKgLevbr+KdYjuvmj+LohOGg=="
+  "resolved" "https://registry.npmjs.org/@googlemaps/markerclusterer/-/markerclusterer-2.0.15.tgz"
+  "version" "2.0.15"
+  dependencies:
+    "fast-deep-equal" "^3.1.3"
+    "supercluster" "^7.1.3"
 
 "@hookform/resolvers@^2.8.10":
   "integrity" "sha512-JIL1DgJIlH9yuxcNGtyhsWX/PgNltz+5Gr6+8SX9fhXc/hPbEIk6wPI82nhgvp3uUb6ZfAM5mqg/x7KR7NAb+A=="
@@ -643,6 +651,28 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   "version" "2.11.6"
 
+"@react-google-maps/api@^2.18.1":
+  "integrity" "sha512-KVlUO/Shh+0g/3egWaKmY0sz6+0QOnYkBGvrBMJbz23519LauA+iJFc4NDCmWNHqD5Vhb/Bkg0kSJgq0Stz3Iw=="
+  "resolved" "https://registry.npmjs.org/@react-google-maps/api/-/api-2.18.1.tgz"
+  "version" "2.18.1"
+  dependencies:
+    "@googlemaps/js-api-loader" "1.15.1"
+    "@googlemaps/markerclusterer" "2.0.15"
+    "@react-google-maps/infobox" "2.16.0"
+    "@react-google-maps/marker-clusterer" "2.16.1"
+    "@types/google.maps" "3.50.5"
+    "invariant" "2.2.4"
+
+"@react-google-maps/infobox@2.16.0":
+  "integrity" "sha512-ZojiMS25388RcUHQPycUAerSqdHDom+3dHczVcXHdT/i8fka3O8InkHxXwMhvBoM143ips7mv2BPaYOAJ5f4Nw=="
+  "resolved" "https://registry.npmjs.org/@react-google-maps/infobox/-/infobox-2.16.0.tgz"
+  "version" "2.16.0"
+
+"@react-google-maps/marker-clusterer@2.16.1":
+  "integrity" "sha512-jOuyqzWLeXvQcoAu6TCVWHAuko+sDt0JjawNHBGqUNLywMtTCvYP0L0PiqJZOUCUeRYGdUy0AKxQ+30vAkvwag=="
+  "resolved" "https://registry.npmjs.org/@react-google-maps/marker-clusterer/-/marker-clusterer-2.16.1.tgz"
+  "version" "2.16.1"
+
 "@reduxjs/toolkit@^1.2.5":
   "integrity" "sha512-ak11IrjYcUXRqlhNPwnz6AcvA2ynJTu8PzDbbqQw4a3xR4KZtgiqbNblQD+10CRbfK4+5C79SOyxnT9dhBqFnA=="
   "resolved" "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.9.0.tgz"
@@ -693,6 +723,11 @@
   "integrity" "sha512-9MVYlmIgmRR31C5b4FVSWtuMmBHh2mOWQYfl7XAYOa8dsnb7iEmUmRSWSFgXFtkjxO65d7hTUHQC+RhR/9IWFg=="
   "resolved" "https://registry.npmjs.org/@types/d3-time/-/d3-time-2.1.1.tgz"
   "version" "2.1.1"
+
+"@types/google.maps@3.50.5":
+  "integrity" "sha512-RuZf1MJtctGlpW+Gd4a/eGtAufUDjMf+eyN1l+B3fbe2YLScJbg8KEljJfb+6vnSPFAeM1/48geVIEg3vqOkxw=="
+  "resolved" "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.50.5.tgz"
+  "version" "3.50.5"
 
 "@types/hoist-non-react-statics@^3.3.1":
   "integrity" "sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA=="
@@ -2369,7 +2404,7 @@
   "resolved" "https://registry.npmjs.org/internmap/-/internmap-1.0.1.tgz"
   "version" "1.0.1"
 
-"invariant@^2.2.1":
+"invariant@^2.2.1", "invariant@2.2.4":
   "integrity" "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA=="
   "resolved" "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz"
   "version" "2.2.4"
@@ -2609,6 +2644,11 @@
   dependencies:
     "jwa" "^1.4.1"
     "safe-buffer" "^5.0.1"
+
+"kdbush@^3.0.0":
+  "integrity" "sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew=="
+  "resolved" "https://registry.npmjs.org/kdbush/-/kdbush-3.0.0.tgz"
+  "version" "3.0.0"
 
 "klona@^2.0.4":
   "integrity" "sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ=="
@@ -3984,6 +4024,13 @@
   "integrity" "sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA=="
   "resolved" "https://registry.npmjs.org/stylis/-/stylis-4.1.3.tgz"
   "version" "4.1.3"
+
+"supercluster@^7.1.3":
+  "integrity" "sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg=="
+  "resolved" "https://registry.npmjs.org/supercluster/-/supercluster-7.1.5.tgz"
+  "version" "7.1.5"
+  dependencies:
+    "kdbush" "^3.0.0"
 
 "supports-color@^5.3.0", "supports-color@^5.4.0", "supports-color@^5.5.0":
   "integrity" "sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow=="

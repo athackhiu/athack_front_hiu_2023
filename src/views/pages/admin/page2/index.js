@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Row, Col, CardBody, CardText , CardTitle } from 'reactstrap'
 import GoogleMapReact from 'google-map-react';
-import { DirectionsRenderer, Marker } from "react-google-maps";
+import { DirectionsRenderer } from "@react-google-maps/api";
 
 import Card from '@components/card-snippet'
 
