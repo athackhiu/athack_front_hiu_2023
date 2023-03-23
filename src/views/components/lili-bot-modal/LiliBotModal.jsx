@@ -1,9 +1,9 @@
-import React, { Fragment, Suspense, useEffect, useRef, useState } from "react";
+import React, { Fragment, Suspense, useEffect, useState } from "react";
 import "regenerator-runtime";
 import { Button, Input, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { useSpeechSynthesis } from "react-speech-kit";
 // ** Router Import
-import { OPENAI_KEY, OPENAI_URL } from "../../../config";
+import { NODE_BOT_URL } from "../../../config";
 import Spinner from "../../../@core/components/spinner/Loading-spinner";
 import botImageLight from "../../../images/gif_bot_chat_light.gif";
 import botImageDark from "../../../images/gif_bot_chat_dark.gif";
@@ -18,6 +18,7 @@ import SpeechRecognition, {
 import Typewriter from "typewriter-effect";
 import { FaMicrophone } from "react-icons/fa";
 import { AiOutlineSend } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const LiliBotModal = () => {
   const recognition = SpeechRecognition;
@@ -32,16 +33,8 @@ const LiliBotModal = () => {
   const skin = useSkin();
   const [lang, setLang] = useState(navigator.language);
   const [previousQuestion, setPreviousQuestion] = useState("");
-  // Your personnal informations
-  const personnalInfos = {
-    langage: lang,
-    websiteName: "At-Hack",
-    myName: "Lili",
-    websiteOwners: "Cedric, Tsanta, Liantsoa, Ericka, Hariaja",
-  };
-
+  const navigate = useNavigate();
   // Les informations de la discussion
-  const discussion = useRef([]);
 
   const [
     speakSpeechSynthesisVoiceOptions,
@@ -140,22 +133,14 @@ const LiliBotModal = () => {
 
   // Get AI Response function
   const getAiResponse = async () => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_KEY}`,
-    };
     const data = {
-      model: "text-davinci-003",
-      prompt: `Your personnal infos : ${JSON.stringify(
-        personnalInfos
-      )} These are our previous discussions formatted as [ [question, response], etc ... ]: ${JSON.stringify(
-        discussion
-      )}. my next question is ${questionText}, answer in well formatted sentences`,
-      temperature: 0,
-      max_tokens: 1000,
-      stop: ".",
+      question: questionText,
+      language: lang,
     };
-    const test = await fetch(`${OPENAI_URL}`, {
+    const headers = {
+      "Content-type": "application/json",
+    };
+    const test = await fetch(`${NODE_BOT_URL}`, {
       method: "POST",
       headers,
       body: JSON.stringify(data),
@@ -165,8 +150,8 @@ const LiliBotModal = () => {
 
   // Function when the message is sent
   const onSendMessage = async () => {
-    const tempQuestion = questionText;
     resetTranscript();
+    cancel()
     recognition.stopListening();
     // console.log(questionText);
     setIsLoadingResponse(true);
@@ -175,14 +160,22 @@ const LiliBotModal = () => {
       if (resp) {
         resp
           .json()
-          .then((jsonResp) => {
-            const text = jsonResp.choices[0].text.trim();
+          .then((data) => {
+            // console.log(data);
+            const response = data.response;
+            const text = response.text;
             setBotResponse(text);
-            discussion.current = [
-              ...discussion.current,
-              [`${tempQuestion}, ${text}`],
-            ];
             setPreviousQuestion(questionText);
+            // Trying to redirect
+            try {
+              const json = response.json;
+              if (json.redirect) {
+                setTimeout(() => {
+                  navigate(json.redirect)
+                  setOpen(false)
+                }, [3000]);
+              }
+            } catch {}
           })
           .finally(() => {
             setIsLoadingResponse(false);
@@ -191,6 +184,7 @@ const LiliBotModal = () => {
       }
     } catch (err) {
       console.error(err);
+      setIsLoadingResponse(false);
     }
   };
 
@@ -268,7 +262,7 @@ const LiliBotModal = () => {
               style={{
                 borderRadius: 50,
                 maxWidth: "90%",
-                height: 100
+                height: 100,
               }}
               src={skin.skin === "light" ? botImageLight : botImageDark}
               alt="bot"
@@ -326,6 +320,7 @@ const LiliBotModal = () => {
                     width: 40,
                   }}
                   onClick={() => {
+                    cancel()
                     recognition.startListening({
                       language: lang,
                       continuous: false,
