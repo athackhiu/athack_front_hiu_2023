@@ -47,6 +47,7 @@ import illustrationsDark from '@src/assets/images/pages/login-v2-dark.svg'
 // ** Styles
 import '@styles/react/pages/page-authentication.scss'
 import { BASE_URL } from '../../../configs/api/url'
+import FaceApi from '../../components/modalface/FaceApi'
 
 const ToastContent = ({ t, name, role }) => {
   return (
@@ -292,8 +293,10 @@ const Login = () => {
                 </Label>
               </div>
               <Button type='submit' color='primary' block>
-                Sign in
+                Se Connecter
               </Button>
+              <br/>
+              <FaceApi/>
             </Form>
             <p className='text-center mt-2'>
               <span className='me-25'>New on our platform?</span>
