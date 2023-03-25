@@ -52,23 +52,18 @@ const Cart = props => {
   const renderCart = () => {
     return produit.map(item => {
       return (
-        <Card key={item.name} className='ecommerce-card'>
+        <Card key={item.nom} className='ecommerce-card'>
           <div className='item-img'>
             <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>
-              <img className='img-fluid' src={item.image} alt={item.name} />
+              <img className='img-fluid' src={item.image} alt={item.nom} />
             </Link>
           </div>
           <CardBody>
             <div className='item-name'>
               <h6 className='mb-0'>
-                <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>{item.name}</Link>
+                <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>{item.nom}</Link>
               </h6>
-              <span className='item-company'>
-                By
-                <a className='ms-25' href='/' onClick={e => e.preventDefault()}>
-                  {item.brand}
-                </a>
-              </span>
+             
               <div className='item-rating'>
                 <ul className='unstyled-list list-inline'>
                   {new Array(5).fill().map((listItem, index) => {
@@ -106,7 +101,7 @@ const Cart = props => {
           <div className='item-options text-center'>
             <div className='item-wrapper'>
               <div className='item-cost'>
-                <h4 className='item-price'>${item.price}</h4>
+                <h4 className='item-price'>${item.prix}</h4>
                 {item.hasFreeShipping ? (
                   <CardText className='shipping'>
                     <Badge color='light-success' pill>
