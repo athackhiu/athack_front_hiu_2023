@@ -64,6 +64,28 @@ function FaceApi() {
     faceapi.draw.drawDetections(canvasRef.current,resized)
     faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
   }
+
+
+  async function fetchUserToken(idUser) {
+    try {
+      const response = await fetch(`https://athack-back-hiu-2023.vercel.app/user/${idUser}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        const token = await response.json();
+        console.log('Token:', token);
+        return token;
+      } else {
+        throw new Error(`Server error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  }
   
 
   const faceMyDetect = async () => {
@@ -99,7 +121,7 @@ function FaceApi() {
               console.log(`Distance: ${distance}`);
               console.log(user);
               localStorage.setItem('userData', JSON.stringify(user));
-             
+              localStorage.setItem('token', JSON.stringify(fetchUserToken(user._id)));
               navigate("/user/page1");
               clearInterval(intervalId);
               break;
