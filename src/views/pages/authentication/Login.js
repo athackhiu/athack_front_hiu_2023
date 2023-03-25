@@ -163,6 +163,7 @@ const Login = () => {
   },[])
 
   const startVideo = ()=>{
+    console.log("startVideo");
     navigator.mediaDevices.getUserMedia({video:true})
     .then((currentStream)=>{
       videoRef.current.srcObject = currentStream
@@ -173,6 +174,7 @@ const Login = () => {
   }
 
   const loadModels = ()=>{
+    console.log("LoadModels");
     Promise.all([
       faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
       faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -186,6 +188,7 @@ const Login = () => {
   }
 
   async function redirect(detections){
+    console.log("redirect");
     canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
         width:940,
@@ -203,6 +206,7 @@ const Login = () => {
   
 
   const faceMyDetect = async () => {
+    console.log("Detect My face");
     const response = await fetch('https://athack-back-hiu-2023.vercel.app/user/all', {
       method: 'GET',
       headers: {
