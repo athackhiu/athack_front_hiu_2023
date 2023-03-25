@@ -57,15 +57,7 @@ const UsersRoutes = [
       action: 'manage',
       resource: 'for-user'
     }
-  },
-  {
-    path: '/user/page4',
-    element: <Page4 />,
-    meta: {
-      action: 'manage',
-      resource: 'for-user'
-    }
-  },
+  }
 ]
 
 export default UsersRoutes
