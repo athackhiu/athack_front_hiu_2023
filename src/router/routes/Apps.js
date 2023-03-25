@@ -173,10 +173,6 @@ const AppRoutes = [
     element: <Navigate to='/apps/user/view/1' />
   },
   {
-    element: <UserView />,
-    path: '/apps/user/view/:id'
-  },
-  {
     element: <Roles />,
     path: '/apps/roles'
   },

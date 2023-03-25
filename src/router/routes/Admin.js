@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import Dashboard from '../../views/apps/dashboardadmin/Dashboard'
 
 const Page1 = lazy(() => import('../../views/pages/admin/page1'))
 const Page2 = lazy(() => import('../../views/pages/admin/page2'))
@@ -9,6 +10,14 @@ const AjoutProduit = lazy(() => import('../../views/pages/admin/produit'))
 
 const AdminRoutes = [
   {
+    path: '/admin/accueil',
+    element: <Dashboard />,
+    meta: {
+      action: 'manage',
+      resource: 'for-admin'
+    }
+  }
+  ,{
     path: '/admin/page1',
     element: <Page1 />,
     meta: {

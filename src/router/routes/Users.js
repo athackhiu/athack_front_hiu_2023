@@ -1,6 +1,8 @@
 import { lazy } from 'react'
+import DashboardUser from '../../views/apps/dashboarduser/Dashboard'
 import Historique from '../../views/apps/historique/Historique'
 import MapPartenaire from '../../views/apps/partenaire/MapPartenaire'
+import UserView from '../../views/apps/user/view'
 import DetailCagnotte from '../../views/pages/cagnotte/DetailCagnotte'
 import ListCagnotte from '../../views/pages/cagnotte/ListCagnotte'
 import PaiementIndex from '../../views/pages/paiement/PaiementIndex'
@@ -63,6 +65,22 @@ const UsersRoutes = [
   {
     path: '/user/facture',
     element: <PaiementIndex />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/accueil',
+    element: <DashboardUser />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/view',
+    element: <UserView />,
     meta: {
       action: 'manage',
       resource: 'for-user'
