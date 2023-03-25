@@ -226,13 +226,13 @@ const Login = () => {
                 <p>
                 -------  Pour ce connecter en tant qu'administrateur : <br></br>
                   <small className='me-50'>
-                    <span className='fw-bold'>Admin:</span> admin@hiu.com | eETU00XXXX@
+                    <span className='fw-bold'>Admin:</span> anjaranasoloericka@gmail.com | eETU00XXXX@
                   </small>
                 </p>
                 <p>
                 -------Pour ce connecter en tant qu'utilisateur: <br></br>
                   <small className='me-50'>
-                    <span className='fw-bold'>User:</span> user@hiu.com | eETU00XXXX@
+                    <span className='fw-bold'>User:</span> liantsurakotonirina@gmail.com | eETU00XXXX@
                   </small>
                 </p>
               </div>
