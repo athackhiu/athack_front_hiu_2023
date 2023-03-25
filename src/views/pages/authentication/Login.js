@@ -1,7 +1,6 @@
 // ** React Imports
-import { useContext ,useRef,useEffect} from 'react'
+import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import * as faceapi from 'face-api.js'
 
 // ** Custom Hooks
 import { useSkin } from '@hooks/useSkin'
@@ -150,105 +149,6 @@ const Login = () => {
    }
  }
 
-
-
- const videoRef = useRef()
-  const canvasRef = useRef()
-  const idCardRef = useRef();
-
-  useEffect(()=>{
-    startVideo()
-    videoRef && loadModels()
-
-  },[])
-
-  const startVideo = ()=>{
-    console.log("startVideo");
-    navigator.mediaDevices.getUserMedia({video:true})
-    .then((currentStream)=>{
-      videoRef.current.srcObject = currentStream
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
-
-  const loadModels = ()=>{
-    console.log("LoadModels");
-    Promise.all([
-      faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
-      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-      faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-      faceapi.nets.faceExpressionNet.loadFromUri('/models')
-
-      ]).then(()=>{
-      faceMyDetect()
-    })
-  }
-
-  async function redirect(detections){
-    console.log("redirect");
-    canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
-      faceapi.matchDimensions(canvasRef.current,{
-        width:940,
-        height:650
-      })
-
-      const resized = faceapi.resizeResults(detections,{
-         width:940,
-        height:650
-      })
-
-    faceapi.draw.drawDetections(canvasRef.current,resized)
-    faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
-  }
-  
-
-  const faceMyDetect = async () => {
-    console.log("Detect My face");
-    const response = await fetch('https://athack-back-hiu-2023.vercel.app/user/all', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const users = await response.json();
-    const intervalId =  setInterval(async () => {
-      const videoFacedetection = await faceapi.detectSingleFace(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
-        .withFaceDescriptor();
-  
-      if (videoFacedetection) {
-        redirect(videoFacedetection);
-  
-        for (const user of users) {
-          const idCardImg = new Image();
-          idCardImg.src = user.profil;
-          idCardImg.crossOrigin = "anonymous";
-  
-          const idCardFacedetection = await faceapi
-            .detectSingleFace(idCardImg, new faceapi.TinyFaceDetectorOptions())
-            .withFaceLandmarks()
-            .withFaceDescriptor();
-  
-          if (idCardFacedetection) {
-            const distance = faceapi.euclideanDistance(idCardFacedetection.descriptor, videoFacedetection.descriptor);
-  
-            if (distance <= 0.4) {
-              console.log(`Match found for user: ${user.prenom} ${user.nom}`);
-              console.log(`Distance: ${distance}`);
-             
-              clearInterval(intervalId);
-              break;
-            }
-          }
-        }
-      }
-    }, 1000);
-  };
-
-
-
   return (
     <div className='auth-wrapper auth-cover'>
       <Row className='auth-inner m-0'>
@@ -305,12 +205,7 @@ const Login = () => {
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
-          <h1>Detection de visage</h1>
-          
-              <div className="appvide">
-                  <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
-              </div>
-              <canvas ref={canvasRef} width="940" height="650"className="appcanvas"/>
+            <img className='img-fluid' src={source} alt='Login Cover' />
           </div>
         </Col>
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
