@@ -17,18 +17,28 @@ import {
   UncontrolledButtonDropdown
 } from 'reactstrap'
 
-const Product = props => {
-  // ** Props
-  const { data, dispatch, getProduct, productId, addToCart } = props;
-
-
-  // ** Handle Move/Add to cart
-  const handleCartBtn = (id, val) => {
-    if (val === false) {
-      dispatch(addToCart(id))
-    }
-    dispatch(getProduct(productId))
+function addCard (Item) {
+  
+  if (!localStorage.getItem("cartlist")) {
+    console.log("io io io");
+    localStorage.setItem("cartlist", JSON.stringify([Item]));
+  } else {
+    console.log("eo eo eo");
+    const tableData = JSON.parse(localStorage.getItem("cartlist")) || [];
+    tableData.push(Item);
+    //const updatedTable = [...tableData, Item];
+    localStorage.setItem("cartlist", JSON.stringify(tableData));
   }
+  
+
+}
+
+const Product = props => {
+  //**  function ajout panier
+
+  // ** Props
+  const { data } = props;
+
 
   // ** Condition btn tag
   const CartBtnTag = data.isInCart ? Link : 'button'
@@ -81,20 +91,13 @@ const Product = props => {
         <hr />
         <div className='d-flex flex-column flex-sm-row pt-1'>
           <Button
-            tag={CartBtnTag}
+           
             className='btn-cart me-0 me-sm-1 mb-1 mb-sm-0'
             color='primary'
-            onClick={() => handleCartBtn(data.id, data.isInCart)}
-            /*eslint-disable */
-            {...(data.isInCart
-              ? {
-                  to: '/apps/ecommerce/checkout'
-                }
-              : {})}
-            /*eslint-enable */
+           onClick={() => addCard(data)}
+           
           >
-            <ShoppingCart className='me-50' size={14} />
-            {data.isInCart ? 'View in cart' : 'Move to cart'}
+           Ajouter dans panier
           </Button>
           
           <UncontrolledButtonDropdown className='dropdown-icon-wrapper btn-share'>

@@ -11,10 +11,11 @@ import { Card, CardBody, CardText, Button, Badge, InputGroup, Input, InputGroupT
 
 // ** Styles
 import '@styles/react/libs/input-number/input-number.scss'
+import { useEffect, useState } from 'react'
 
 const Cart = props => {
   // ** Props
-  const { products, stepper, deleteCartItem, dispatch, addToWishlist, deleteWishlistItem, getCartItems } = props
+  const { stepper, deleteCartItem, dispatch, addToWishlist, deleteWishlistItem, getCartItems } = props
 
   // ** Function to convert Date
   const formatDate = (value, formatting = { month: 'short', day: 'numeric', year: 'numeric' }) => {
@@ -32,9 +33,24 @@ const Cart = props => {
     dispatch(getCartItems())
   }
 
+  // ** useEffect
+  const [produit, setProduct] = useState();
+
+  useEffect(() => {
+    console.log("huhuhuhu");
+    setProduct(JSON.parse(localStorage.getItem("cartlist")));
+    //console.log(JSON.parse(localStorage.getItem("cartlist")));
+    /*if (localStorage.getItem("cartlist")) {
+      console.log("huhuhuhuhu");
+      console.log(JSON.parse(localStorage.getItem("cartlist")));
+      
+    }*/
+  }, [])
+
+
   // ** Render cart items
   const renderCart = () => {
-    return products.map(item => {
+    return produit.map(item => {
       return (
         <Card key={item.name} className='ecommerce-card'>
           <div className='item-img'>
@@ -125,7 +141,7 @@ const Cart = props => {
 
   return (
     <div className='list-view product-checkout'>
-      <div className='checkout-items'>{products.length ? renderCart() : <h4>Your cart is empty</h4>}</div>
+      <div className='checkout-items'>{produit ? renderCart() : <h4>Your cart is empty</h4>}</div>
       <div className='checkout-options'>
         <Card>
           <CardBody>
@@ -171,7 +187,7 @@ const Cart = props => {
               <Button
                 block
                 color='primary'
-                disabled={!products.length}
+                //disabled={!produit.length}
                 onClick={() => stepper.next()}
                 classnames='btn-next place-order'
               >
