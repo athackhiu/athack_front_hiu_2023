@@ -93,7 +93,7 @@ const ProductCards = props => {
                 /*eslint-enable */
               >
                 <ShoppingCart className='me-50' size={14} />
-                <span>{item.isInCart ? 'View In Cart' : 'Add To Cart'}</span>
+                <span>{item.isInCart ? 'View In Cart' : 'Voir panier'}</span>
               </Button>
             </div>
           </Card>

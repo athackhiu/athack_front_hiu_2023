@@ -130,41 +130,6 @@ const AppRoutes = [
     }
   },
   {
-    element: <EcommerceShop />,
-    path: '/apps/ecommerce/shop',
-    meta: {
-      className: 'ecommerce-application'
-    }
-  },
-  {
-    element: <EcommerceWishlist />,
-    path: '/apps/ecommerce/wishlist',
-    meta: {
-      className: 'ecommerce-application'
-    }
-  },
-  {
-    path: '/apps/ecommerce/product-detail',
-    element: <Navigate to='/apps/ecommerce/product-detail/apple-i-phone-11-64-gb-black-26' />,
-    meta: {
-      className: 'ecommerce-application'
-    }
-  },
-  {
-    path: '/apps/ecommerce/product-detail/:product',
-    element: <EcommerceDetail />,
-    meta: {
-      className: 'ecommerce-application'
-    }
-  },
-  {
-    path: '/apps/ecommerce/checkout',
-    element: <EcommerceCheckout />,
-    meta: {
-      className: 'ecommerce-application'
-    }
-  },
-  {
     element: <UserList />,
     path: '/apps/user/list'
   },
