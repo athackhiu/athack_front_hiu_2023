@@ -14,6 +14,10 @@ const CopyToClipboard = lazy(() => import('../../views/extensions/copy-to-clipbo
 const ImportComponent = lazy(() => import('../../views/extensions/import-export/Import'))
 const ExportComponent = lazy(() => import('../../views/extensions/import-export/Export'))
 const ExportSelected = lazy(() => import('../../views/extensions/import-export/ExportSelected'))
+const PartnerExport = lazy(() => import('../../views/extensions/partnerlist/PartnerExport'))
+const PartnerList = lazy(() => import('../../views/extensions/partnerlist/PartnerList'))
+const AproductList = lazy(() => import('../../views/extensions/Aproductlist/AproductList'))
+const AproductListExport = lazy(() => import('../../views/extensions/Aproductlist/AproductListExport'))
 
 const ExtensionsRoutes = [
   {
@@ -75,6 +79,22 @@ const ExtensionsRoutes = [
   {
     element: <I18nComponent />,
     path: '/extensions/i18n'
+  },
+  {
+    element:<PartnerList />,
+    path: '/extensions/partner-list'
+  },
+  {
+    element:<PartnerExport/>,
+    path: '/extensions/partner-export'
+  },
+  {
+    element:<AproductList />,
+    path: '/extensions/aproduct-list'
+  },
+  {
+    element:<AproductListExport/>,
+    path: '/extensions/aproduct-list-export'
   }
 ]
 
