@@ -98,7 +98,7 @@ function FaceApi() {
               console.log(`Match found for user: ${user.prenom} ${user.nom}`);
               console.log(`Distance: ${distance}`);
               console.log(user);
-              localStorage.setItem('userData', user);
+              localStorage.setItem('userData', JSON.stringify(user));
              
               navigate("/user/page1");
               clearInterval(intervalId);
