@@ -1,4 +1,7 @@
 import { lazy } from 'react'
+import DetailCagnotte from '../../views/pages/cagnotte/DetailCagnotte'
+import ListCagnotte from '../../views/pages/cagnotte/ListCagnotte'
+import PaiementIndex from '../../views/pages/paiement/PaiementIndex'
 
 const Page1 = lazy(() => import('../../views/pages/users/page1'))
 const Page2 = lazy(() => import('../../views/pages/users/page2'))
@@ -26,6 +29,30 @@ const UsersRoutes = [
   {
     path: '/user/page3',
     element: <Page3 />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/listcagnotte',
+    element: <ListCagnotte />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/detailcagnotte/:id',
+    element: <DetailCagnotte />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/facture',
+    element: <PaiementIndex />,
     meta: {
       action: 'manage',
       resource: 'for-user'
