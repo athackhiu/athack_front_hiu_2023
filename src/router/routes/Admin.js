@@ -7,6 +7,12 @@ const Page4 = lazy(() => import('../../views/pages/admin/page4'))
 const AjoutProduit = lazy(() => import('../../views/pages/admin/produit'))
 
 
+const PartnerExport = lazy(() => import('../../views/extensions/partnerlist/PartnerExport'))
+const PartnerList = lazy(() => import('../../views/extensions/partnerlist/PartnerList'))
+const AproductList = lazy(() => import('../../views/extensions/Aproductlist/AproductList'))
+const AproductListExport = lazy(() => import('../../views/extensions/Aproductlist/AproductListExport'))
+
+
 const AdminRoutes = [
   {
     path: '/admin/page1',
@@ -49,6 +55,38 @@ const AdminRoutes = [
       resource: 'for-admin'
     }
   },
+  {
+    element:<PartnerList />,
+    path: '/extensions/partner-list',
+    meta: {
+      action: 'manage',
+      resource: 'for-admin',
+    }
+  },
+  {
+    element:<PartnerExport/>,
+    path: '/extensions/partner-export',
+    meta: {
+      action: 'manage',
+      resource: 'for-admin',
+    }
+  },
+  {
+    element:<AproductList />,
+    path: '/extensions/aproduct-list',
+    meta: {
+      action: 'manage',
+      resource: 'for-admin',
+    }
+  },
+  {
+    element:<AproductListExport/>,
+    path: '/extensions/aproduct-list-export',
+    meta: {
+      action: 'manage',
+      resource: 'for-admin',
+    }
+  }
 ]
 
 export default AdminRoutes

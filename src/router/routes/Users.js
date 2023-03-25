@@ -20,10 +20,7 @@ const EcommerceDetail = lazy(() => import('../../views/apps/ecommerce/detail'))
 const EcommerceWishlist = lazy(() => import('../../views/apps/ecommerce/wishlist'))
 const EcommerceCheckout = lazy(() => import('../../views/apps/ecommerce/checkout'))
 
-const PartnerExport = lazy(() => import('../../views/extensions/partnerlist/PartnerExport'))
-const PartnerList = lazy(() => import('../../views/extensions/partnerlist/PartnerList'))
-const AproductList = lazy(() => import('../../views/extensions/Aproductlist/AproductList'))
-const AproductListExport = lazy(() => import('../../views/extensions/Aproductlist/AproductListExport'))
+
 
 
 const UsersRoutes = [
@@ -135,38 +132,6 @@ const UsersRoutes = [
       action: 'manage',
       resource: 'for-user',
       className: 'ecommerce-application'
-    }
-  },
-  {
-    element:<PartnerList />,
-    path: '/extensions/partner-list',
-    meta: {
-      action: 'manage',
-      resource: 'for-user',
-    }
-  },
-  {
-    element:<PartnerExport/>,
-    path: '/extensions/partner-export',
-    meta: {
-      action: 'manage',
-      resource: 'for-user',
-    }
-  },
-  {
-    element:<AproductList />,
-    path: '/extensions/aproduct-list',
-    meta: {
-      action: 'manage',
-      resource: 'for-user',
-    }
-  },
-  {
-    element:<AproductListExport/>,
-    path: '/extensions/aproduct-list-export',
-    meta: {
-      action: 'manage',
-      resource: 'for-user',
     }
   },
   {
