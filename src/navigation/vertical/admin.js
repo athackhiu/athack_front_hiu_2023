@@ -1,5 +1,5 @@
 // ** Icons Import
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield } from 'react-feather'
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, Home } from 'react-feather'
 var ability = JSON.parse(localStorage.getItem("adminData"))?.ability || [{ action: "lol" }];
 
 
@@ -14,6 +14,14 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
             action: 'manage',
             resource: 'for-admin',
             navLink: '/admin/page1'
+        },
+        {
+            id: 'admin-accueil',
+            title: 'Accueil',
+            icon: <Home size={12} />,
+            action: 'manage',
+            resource: 'for-admin',
+            navLink: '/admin/accueil'
         },
         {
             id: 'admin-page2',

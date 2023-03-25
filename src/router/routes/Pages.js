@@ -29,10 +29,6 @@ const PagesRoutes = [
     }
   },
   {
-    path: '/pages/faq',
-    element: <Faq />
-  },
-  {
     path: '/pages/knowledge-base',
     element: <KnowledgeBase />
   },
