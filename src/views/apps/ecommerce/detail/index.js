@@ -1,6 +1,6 @@
 // ** React Imports
-import { useEffect, Fragment } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, Fragment, useState} from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 
 // ** Product detail components
 import ItemFeatures from './ItemFeatures'
@@ -25,12 +25,20 @@ const Details = () => {
   const productId = params.substring(params.lastIndexOf('-') + 1)
 
   // ** Store Vars
-  const dispatch = useDispatch()
-  const store = useSelector(state => state.ecommerce)
+  const dispatch = useDispatch();
+  const store = useSelector(state => state.ecommerce);
+
+  const location = useLocation();
+  const [prd, setPrd] = useState(location.state.product);
+
 
   // ** ComponentDidMount : Get product
   useEffect(() => {
-    dispatch(getProduct(productId))
+    dispatch(getProduct(productId));
+    console.log(location.state.product);
+  //  setPrd(location.state.product);
+    console.log(prd);
+    
   }, [])
 
   return (
@@ -45,7 +53,7 @@ const Details = () => {
                 addToCart={addToCart}
                 productId={productId}
                 getProduct={getProduct}
-                data={store.productDetail}
+                data={prd}
                 addToWishlist={addToWishlist}
                 deleteWishlistItem={deleteWishlistItem}
               />

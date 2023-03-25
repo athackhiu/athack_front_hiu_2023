@@ -17,9 +17,7 @@ const ProductCards = props => {
     addToCart,
     activeView,
     getProducts,
-    getCartItems,
-    addToWishlist,
-    deleteWishlistItem
+    getCartItems
   } = props
 
   // ** Handle Move/Add to cart
@@ -31,15 +29,6 @@ const ProductCards = props => {
     dispatch(getProducts(store.params))
   }
 
-  // ** Handle Wishlist item toggle
-  const handleWishlistClick = (id, val) => {
-    if (val) {
-      dispatch(deleteWishlistItem(id))
-    } else {
-      dispatch(addToWishlist(id))
-    }
-    dispatch(getProducts(store.params))
-  }
 
   // ** Renders products
   const renderProducts = () => {
@@ -48,37 +37,26 @@ const ProductCards = props => {
         const CartBtnTag = item.isInCart ? Link : 'button'
 
         return (
-          <Card className='ecommerce-card' key={item.name}>
+          <Card className='ecommerce-card' key={item.nom}>
             <div className='item-img text-center mx-auto'>
-              <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>
-                <img className='img-fluid card-img-top' src={item.image} alt={item.name} />
+              <Link to={"/apps/ecommerce/product-detail/3-dr-solo-gimbal-black-5"} state={{product:item}}>
+                <img className='img-fluid card-img-top' src={item.image} alt={item.nom} />
               </Link>
             </div>
             <CardBody>
               <div className='item-wrapper'>
                 <div className='item-rating'>
                   <ul className='unstyled-list list-inline'>
-                    {new Array(5).fill().map((listItem, index) => {
-                      return (
-                        <li key={index} className='ratings-list-item me-25'>
-                          <Star
-                            className={classnames({
-                              'filled-star': index + 1 <= item.rating,
-                              'unfilled-star': index + 1 > item.rating
-                            })}
-                          />
-                        </li>
-                      )
-                    })}
+                   
                   </ul>
                 </div>
                 <div className='item-cost'>
-                  <h6 className='item-price'>${item.price}</h6>
+                  <h6 className='item-price'>{item.prix}Ar</h6>
                 </div>
               </div>
               <h6 className='item-name'>
                 <Link className='text-body' to={`/apps/ecommerce/product-detail/${item.slug}`}>
-                  {item.name}
+                  {item.nom}
                 </Link>
                 <CardText tag='span' className='item-company'>
                   By{' '}
@@ -92,7 +70,7 @@ const ProductCards = props => {
             <div className='item-options text-center'>
               <div className='item-wrapper'>
                 <div className='item-cost'>
-                  <h4 className='item-price'>${item.price}</h4>
+                  <h4 className='item-price'>${item.prix}</h4>
                   {item.hasFreeShipping ? (
                     <CardText className='shipping'>
                       <Badge color='light-success'>Free Shipping</Badge>
@@ -100,19 +78,7 @@ const ProductCards = props => {
                   ) : null}
                 </div>
               </div>
-              <Button
-                className='btn-wishlist'
-                color='light'
-                onClick={() => handleWishlistClick(item.id, item.isInWishlist)}
-              >
-                <Heart
-                  className={classnames('me-50', {
-                    'text-danger': item.isInWishlist
-                  })}
-                  size={14}
-                />
-                <span>Wishlist</span>
-              </Button>
+          
               <Button
                 color='primary'
                 tag={CartBtnTag}

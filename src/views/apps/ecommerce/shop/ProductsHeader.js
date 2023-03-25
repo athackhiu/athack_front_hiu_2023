@@ -20,9 +20,9 @@ const ProductsHeader = props => {
 
   // ** Sorting obj
   const sortToggleText = {
-    'price-desc': 'Highest',
-    'price-asc': 'Lowest',
-    featured: 'Featured'
+    'prix-desc': 'chère',
+    'prix-asc': 'Moins Chère',
+    featured: 'Tous'
   }
 
   return (
@@ -48,19 +48,19 @@ const ProductsHeader = props => {
                     className='w-100'
                     onClick={() => dispatch(getProducts({ ...store.params, sortBy: 'featured' }))}
                   >
-                    Featured
+                    Tous
                   </DropdownItem>
                   <DropdownItem
                     className='w-100'
-                    onClick={() => dispatch(getProducts({ ...store.params, sortBy: 'price-asc' }))}
+                    onClick={() => dispatch(getProducts({ ...store.params, sortBy: 'prix-asc' }))}
                   >
-                    Lowest
+                    Moins chère
                   </DropdownItem>
                   <DropdownItem
                     className='w-100'
-                    onClick={() => dispatch(getProducts({ ...store.params, sortBy: 'price-desc' }))}
+                    onClick={() => dispatch(getProducts({ ...store.params, sortBy: 'prix-desc' }))}
                   >
-                    Highest
+                    Chère
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledButtonDropdown>
