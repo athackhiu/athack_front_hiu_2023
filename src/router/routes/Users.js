@@ -1,12 +1,13 @@
 import { lazy } from 'react'
-<<<<<<< Updated upstream
-=======
+
 import { Navigate } from 'react-router-dom'
+
+
 import Historique from '../../views/apps/historique/Historique'
 import DetailCagnotte from '../../views/pages/cagnotte/DetailCagnotte'
 import ListCagnotte from '../../views/pages/cagnotte/ListCagnotte'
 import PaiementIndex from '../../views/pages/paiement/PaiementIndex'
->>>>>>> Stashed changes
+
 
 const Page1 = lazy(() => import('../../views/pages/users/page1'))
 const Page2 = lazy(() => import('../../views/pages/users/page2'))
@@ -50,15 +51,13 @@ const UsersRoutes = [
     }
   },
   {
-    path: '/user/cagnotte',
-    element: <Cagnotte />,
+    path: '/user/listcagnotte',
+    element: <ListCagnotte />,
     meta: {
       action: 'manage',
       resource: 'for-user'
     }
   },
-<<<<<<< Updated upstream
-=======
   {
     path: '/user/detailcagnotte/:id',
     element: <DetailCagnotte />,
@@ -90,6 +89,7 @@ const UsersRoutes = [
       action: 'manage',
       resource: 'for-user'
     }
+
   },
   {
     element: <EcommerceShop />,
@@ -168,7 +168,6 @@ const UsersRoutes = [
       resource: 'for-user',
     }
   }
->>>>>>> Stashed changes
 ]
 
 export default UsersRoutes
