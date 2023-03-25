@@ -4,6 +4,7 @@ const Page1 = lazy(() => import('../../views/pages/admin/page1'))
 const Page2 = lazy(() => import('../../views/pages/admin/page2'))
 const Page3 = lazy(() => import('../../views/pages/admin/page3'))
 const Page4 = lazy(() => import('../../views/pages/admin/page4'))
+const AjoutProduit = lazy(() => import('../../views/pages/admin/produit'))
 
 
 const AdminRoutes = [
@@ -34,6 +35,15 @@ const AdminRoutes = [
   {
     path: '/admin/page4',
     element: <Page4 />,
+    meta: {
+      action: 'manage',
+      resource: 'for-admin'
+    }
+  },
+
+  {
+    path: '/admin/produit/ajoutProduit',
+    element: <AjoutProduit />,
     meta: {
       action: 'manage',
       resource: 'for-admin'
