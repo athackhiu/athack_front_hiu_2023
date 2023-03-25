@@ -1,5 +1,5 @@
 // ** Icons Import
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, User, Home } from 'react-feather'
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, User, Home, AtSign } from 'react-feather'
 var ability = JSON.parse(localStorage.getItem("userData"))?.ability || [{ action: "lol" }];
 
 
@@ -7,7 +7,6 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
         {
             header: 'Users'
         },
-       
         {
             id: 'user-page1',
             title: 'Page 1',
@@ -17,12 +16,12 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
             navLink: '/user/page1'
         } ,
         {
-            id: 'user-profil',
-            title: 'Profil',
-            icon: <User size={12} />,
+            id: 'user-faq',
+            title: 'FAQ',
+            icon: <AtSign size={12} />,
             action: 'manage',
             resource: 'for-user',
-            navLink: '/user/view'
+            navLink: '/user/faq'
         },
         {
             id: 'user-accueil',
@@ -31,6 +30,14 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
             action: 'manage',
             resource: 'for-user',
             navLink: '/user/accueil'
+        },
+        {
+            id: 'user-profil',
+            title: 'Profil',
+            icon: <User size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/view'
         },
         {
             id: 'user-listcagnotte',

@@ -5,6 +5,7 @@ import MapPartenaire from '../../views/apps/partenaire/MapPartenaire'
 import UserView from '../../views/apps/user/view'
 import DetailCagnotte from '../../views/pages/cagnotte/DetailCagnotte'
 import ListCagnotte from '../../views/pages/cagnotte/ListCagnotte'
+import Faq from '../../views/pages/faq'
 import PaiementIndex from '../../views/pages/paiement/PaiementIndex'
 
 const Page1 = lazy(() => import('../../views/pages/users/page1'))
@@ -65,6 +66,14 @@ const UsersRoutes = [
   {
     path: '/user/facture',
     element: <PaiementIndex />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/faq',
+    element: <Faq />,
     meta: {
       action: 'manage',
       resource: 'for-user'
