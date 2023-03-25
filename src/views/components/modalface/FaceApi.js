@@ -1,11 +1,13 @@
 import { useRef, useEffect, useState } from 'react'
 import * as faceapi from 'face-api.js'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 function FaceApi() {
   const videoRef = useRef()
   const canvasRef = useRef()
   const idCardRef = useRef()
+  const navigate = useNavigate()
   const [modal, setModal] = useState(null)
 
   useEffect(() => {
@@ -96,7 +98,9 @@ function FaceApi() {
               console.log(`Match found for user: ${user.prenom} ${user.nom}`);
               console.log(`Distance: ${distance}`);
               console.log(user);
+              localStorage.setItem('userData', user);
              
+              navigate("/user/page1");
               clearInterval(intervalId);
               break;
             }
