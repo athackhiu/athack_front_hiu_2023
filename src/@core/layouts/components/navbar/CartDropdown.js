@@ -44,7 +44,9 @@ const CartDropdown = () => {
     if (store.cart.length) {
       let total = 0
 
+       
       return (
+        
         <Fragment>
           <PerfectScrollbar
             className='scrollable-container media-list'

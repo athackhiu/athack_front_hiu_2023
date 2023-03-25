@@ -33,7 +33,8 @@ const NavbarUser = props => {
         </NavLink>
       </NavItem>
       <NavbarSearch />
-      <CartDropdown />
+      {JSON.parse(localStorage.getItem("userData"))?.role !== "admin"  && <CartDropdown />}
+      
       <NotificationDropdown />
       <UserDropdown />
     </ul>

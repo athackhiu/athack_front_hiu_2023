@@ -25,6 +25,14 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
             navLink: '/user/listcagnotte'
         } ,
         {
+            id: 'user-historique',
+            title: 'Historique',
+            icon: <Shield size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/historique'
+        },
+        {
             id: 'user-paiement',
             title: 'Paiement',
             icon: <Shield size={12} />,

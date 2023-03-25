@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import Historique from '../../views/apps/historique/Historique'
 import DetailCagnotte from '../../views/pages/cagnotte/DetailCagnotte'
 import ListCagnotte from '../../views/pages/cagnotte/ListCagnotte'
 import PaiementIndex from '../../views/pages/paiement/PaiementIndex'
@@ -53,6 +54,22 @@ const UsersRoutes = [
   {
     path: '/user/facture',
     element: <PaiementIndex />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/facture',
+    element: <PaiementIndex />,
+    meta: {
+      action: 'manage',
+      resource: 'for-user'
+    }
+  },
+  {
+    path: '/user/historique',
+    element: <Historique/>,
     meta: {
       action: 'manage',
       resource: 'for-user'
