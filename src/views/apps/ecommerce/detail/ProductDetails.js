@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ** Third Party Components
 import classnames from "classnames";
@@ -25,21 +25,10 @@ import {
   DropdownMenu,
   DropdownToggle,
   UncontrolledButtonDropdown,
+  Spinner,
 } from "reactstrap";
-import { useEffect } from "react";
-
-function addCard(Item) {
-  if (!localStorage.getItem("cartlist")) {
-    console.log("io io io");
-    localStorage.setItem("cartlist", JSON.stringify([Item]));
-  } else {
-    console.log("eo eo eo");
-    const tableData = JSON.parse(localStorage.getItem("cartlist")) || [];
-    tableData.push(Item);
-    //const updatedTable = [...tableData, Item];
-    localStorage.setItem("cartlist", JSON.stringify(tableData));
-  }
-}
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../../../../configs/api/url";
 
 const Product = (props) => {
   //**  function ajout panier
@@ -52,8 +41,46 @@ const Product = (props) => {
   // }, [props]);
 
   // ** Condition btn tag
+  const navigate = useNavigate()
   const CartBtnTag = data.isInCart ? Link : "button";
+  const [isLoadingAddCart, setIsLoadingAddCart] = useState(false);
 
+  function addCard() {
+    setIsLoadingAddCart(true)
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      panierId: "641fd2a5596a2e26aed5aa25",
+      produit: {
+        _id: data._id,
+        nom: data.nom,
+        description: data.description,
+        prix: data.prix,
+        type: data.type,
+        image: data.image,
+        duree: data.duree,
+        __v: 0,
+      },
+      quantite: 1,
+    });
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${BASE_URL}/paniers/add`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error))
+      .finally(() => {
+        setIsLoadingAddCart(false)
+        alert(`Ajouté avec succès`)
+        navigate(`/apps/ecommerce/shop`)
+      });
+  }
   return (
     <Row className="my-2">
       <Col
@@ -63,6 +90,9 @@ const Product = (props) => {
       >
         <div className="d-flex align-items-center justify-content-center">
           <img
+            style={{
+              width: 200,
+            }}
             className="img-fluid product-img"
             src={data.image}
             alt={data.nom}
@@ -101,7 +131,7 @@ const Product = (props) => {
             </li>
           ) : null}
           <li>
-            <DollarSign size={19} />
+            {/* <DollarSign size={19} /> */}
             <span>EMI options available</span>
           </li>
         </ul>
@@ -114,7 +144,7 @@ const Product = (props) => {
             color="primary"
             onClick={() => addCard(data)}
           >
-            Ajouter dans panier
+            {isLoadingAddCart ? <Spinner /> : `Ajouter dans panier`}
           </Button>
 
           <UncontrolledButtonDropdown className="dropdown-icon-wrapper btn-share">

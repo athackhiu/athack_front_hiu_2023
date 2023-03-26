@@ -19,21 +19,21 @@ const Payment = () => {
             <CardText className='text-muted mt-25'>Be sure to click on correct payment option</CardText>
           </CardHeader>
           <CardBody>
-            <h6 className='card-holder-name my-75'>John Doe</h6>
+            <h6 className='card-holder-name my-75'>{JSON.parse(localStorage.getItem("userData")).prenom} {JSON.parse(localStorage.getItem("userData")).nom}</h6>
             <div className='form-check mb-2'>
               <Input defaultChecked id='us-card' type='radio' name='paymentMethod' />
               <Label className='form-check-label' htmlFor='us-card'>
-                US Unlocked Debit Card 12XX XXXX XXXX 0000
+                Ariary MGA Madagascar
               </Label>
             </div>
             <Row className='customer-cvv mt-1 row-cols-lg-auto'>
               <Col xs={3} className='d-flex align-items-center'>
                 <Label className='mb-50' for='card-holder-cvv'>
-                  Enter CVV:
+                  Entrez numero de telephone:
                 </Label>
               </Col>
               <Col xs={4} className='p-0'>
-                <Input className='input-cvv mb-50' id='card-holder-cvv' />
+                <Input className='input-cvv mb-50' id='card-holder-cvv' defaultValue={`333005837`} />
               </Col>
               <Col xs={3}>
                 <Button className='btn-cvv mb-50' color='primary'>
@@ -41,48 +41,6 @@ const Payment = () => {
                 </Button>
               </Col>
             </Row>
-            <hr className='my-2' />
-            <ul className='other-payment-options list-unstyled'>
-              <li className='py-50'>
-                <div className='form-check'>
-                  <Input type='radio' name='paymentMethod' id='credit-card' />
-                  <Label className='form-label' for='credit-card'>
-                    Credit / Debit / ATM Card
-                  </Label>
-                </div>
-              </li>
-              <li className='py-50'>
-                <div className='form-check'>
-                  <Input type='radio' name='paymentMethod' id='payment-net-banking' />
-                  <Label className='form-label' for='payment-net-banking'>
-                    Net Banking
-                  </Label>
-                </div>
-              </li>
-              <li className='py-50'>
-                <div className='form-check'>
-                  <Input type='radio' name='paymentMethod' id='payment-emi' />
-                  <Label className='form-label' for='payment-emi'>
-                    EMI (Easy Installment)
-                  </Label>
-                </div>
-              </li>
-              <li className='py-50'>
-                <div className='form-check'>
-                  <Input type='radio' name='paymentMethod' id='payment-cod' />
-                  <Label className='form-label' for='payment-cod'>
-                    Cash On Delivery
-                  </Label>
-                </div>
-              </li>
-            </ul>
-            <hr className='my-2' />
-            <div className='gift-card mb-25'>
-              <CardText>
-                <PlusCircle className='me-50' size={21} />
-                <span className='align-middle'>Add Gift Card</span>
-              </CardText>
-            </div>
           </CardBody>
         </Card>
       </div>

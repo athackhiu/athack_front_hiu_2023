@@ -55,7 +55,6 @@ const CartDropdown = () => {
 
   const initializeCart = () => {
     const token = localStorage.getItem("token");
-    console.log(token);
 
     const myHeaders = new Headers();
     myHeaders.append("x-auth-token", token);
@@ -78,7 +77,6 @@ const CartDropdown = () => {
   }, [dropdownOpen]);
   // ** Loops through Cart Array to return Cart Items
   const renderCartItems = () => {
-    console.log(cartState)
     if (cartState?.panierProduit) {
       let total = 0;
       return (
@@ -90,33 +88,26 @@ const CartDropdown = () => {
             }}
           >
             {cartState?.panierProduit.map((item) => {
-              total += item.price;
-
+              total += item.prix;
+              const produit = item.produit;
+              console.log(produit);
               return (
-                <div key={item.id} className="list-item align-items-center">
+                <div key={produit._id} className="list-item align-items-center">
                   <img
                     className="d-block rounded me-1"
-                    src={item.produit._id}
-                    alt={item.produit.name}
+                    src={produit.image}
+                    alt={produit.name}
                     width="62"
                   />
                   <div className="list-item-body flex-grow-1">
                     <X
                       size={14}
                       className="cart-item-remove"
-                      onClick={() => dispatch(deleteCartItem(item.produit._id))}
+                      // onClick={() => dispatch(deleteCartItem(produit._id))}
                     />
                     <div className="media-heading">
-                      <h6 className="cart-item-title">
-                        <Link
-                          className="text-body"
-                          to={`/apps/ecommerce/product/${item.slug}`}
-                          onClick={() => handleDropdownItemClick(item.id)}
-                        >
-                          {item.name}
-                        </Link>
-                      </h6>
-                      <small className="cart-item-by">by {item.brand}</small>
+                      <h6 className="cart-item-title">{produit.nom}</h6>
+                      {/* <small className="cart-item-by">by {item.brand}</small> */}
                     </div>
                     <div className="cart-item-qty">
                       <InputNumber
@@ -124,11 +115,11 @@ const CartDropdown = () => {
                         max={10}
                         upHandler={<Plus />}
                         className="cart-input"
-                        defaultValue={item.qty}
+                        defaultValue={item.quantite}
                         downHandler={<Minus />}
                       />
                     </div>
-                    <h5 className="cart-item-price">${item.price}</h5>
+                    <h5 className="cart-item-price">${produit.prix * item.quantite}</h5>
                   </div>
                 </div>
               );

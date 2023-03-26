@@ -63,7 +63,7 @@ export default JSON.parse(localStorage.getItem("userData"))?.role !==
         icon: <CreditCard size={12} />,
         action: "manage",
         resource: "for-user",
-        navLink: "/user/facture",
+        navLink: "/apps/ecommerce/checkout",
       },
       {
         id: "user-profil",

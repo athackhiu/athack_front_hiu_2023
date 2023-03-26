@@ -69,6 +69,9 @@ const ProductCards = (props) => {
                 state={{ product: item }}
               >
                 <img
+                  style={{
+                    width: 150
+                  }}
                   className="img-fluid card-img-top"
                   src={item.image}
                   alt={item.nom}
