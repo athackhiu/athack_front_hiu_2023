@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 function FaceApi() {
+
   const videoRef = useRef()
   const canvasRef = useRef()
   const idCardRef = useRef()
@@ -31,7 +32,7 @@ function FaceApi() {
     .then((currentStream)=>{
       videoRef.current.srcObject = currentStream
     })
-    .catch((err)=>{
+    .catch((err) => {
       console.log(err)
     })
   }
@@ -88,12 +89,7 @@ function FaceApi() {
   
 
   const faceMyDetect = async () => {
-    const response = await fetch('https://athack-back-hiu-2023.vercel.app/user/all', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+   
 
     localStorage.removeItem('token')
     localStorage.removeItem('userData')
@@ -127,7 +123,7 @@ function FaceApi() {
         clearInterval(idInterval)
         window.location.href = "/admin/accueil";
       }
-    },1000)
+    },100)
   })
 
 

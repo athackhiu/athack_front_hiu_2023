@@ -2,8 +2,8 @@ import mock from '../mock'
 
 const data = {
   orders_bar_chart: {
-    title: 'Orders',
-    statistics: '2,76k',
+    title: 'Commande',
+    statistics: '278',
     series: [
       {
         name: '2020',
@@ -12,8 +12,8 @@ const data = {
     ]
   },
   profit_line_chart: {
-    title: 'Profit',
-    statistics: '6,24k',
+    title: 'profit',
+    statistics: '6200',
     series: [
       {
         data: [0, 20, 5, 30, 15, 45]

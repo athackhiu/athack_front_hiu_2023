@@ -11,26 +11,26 @@ import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col } from 'react
 const StatsCard = ({ cols }) => {
   const data = [
     {
-      title: '230k',
-      subtitle: 'Sales',
+      title: '230',
+      subtitle: 'Achat',
       color: 'light-primary',
       icon: <TrendingUp size={24} />
     },
     {
-      title: '8.549k',
-      subtitle: 'Customers',
+      title: '30',
+      subtitle: 'Vendeur',
       color: 'light-info',
       icon: <User size={24} />
     },
     {
-      title: '1.423k',
-      subtitle: 'Products',
+      title: '1.423',
+      subtitle: 'Produit',
       color: 'light-danger',
       icon: <Box size={24} />
     },
     {
-      title: '$9745',
-      subtitle: 'Revenue',
+      title: '8.900Ar',
+      subtitle: 'Montant actuel ',
       color: 'light-success',
       icon: <DollarSign size={24} />
     }

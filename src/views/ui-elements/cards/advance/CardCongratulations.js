@@ -19,9 +19,9 @@ const CardCongratulations = () => {
         <img className='congratulations-img-right' src={decorationRight} alt='decor-right' />
         <Avatar icon={<Award size={28} />} className='shadow' color='primary' size='xl' />
         <div className='text-center'>
-          <h1 className='mb-1 text-white'>Congratulations John,</h1>
+          <h1 className='mb-1 text-white'>Quel bonne gestion cette année !!</h1>
           <CardText className='m-auto w-75'>
-            You have done <strong>57.6%</strong> more sales today. Check your new badge in your profile.
+          Continue votre  <strong>bonne </strong> travail
           </CardText>
         </div>
       </CardBody>
