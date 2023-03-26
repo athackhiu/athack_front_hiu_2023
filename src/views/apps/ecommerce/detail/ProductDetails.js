@@ -1,9 +1,19 @@
 // ** React Imports
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 // ** Third Party Components
-import classnames from 'classnames'
-import { Star, ShoppingCart, DollarSign, Heart, Share2, Facebook, Twitter, Youtube, Instagram } from 'react-feather'
+import classnames from "classnames";
+import {
+  Star,
+  ShoppingCart,
+  DollarSign,
+  Heart,
+  Share2,
+  Facebook,
+  Twitter,
+  Youtube,
+  Instagram,
+} from "react-feather";
 
 // ** Reactstrap Imports
 import {
@@ -14,11 +24,11 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  UncontrolledButtonDropdown
-} from 'reactstrap'
+  UncontrolledButtonDropdown,
+} from "reactstrap";
+import { useEffect } from "react";
 
-function addCard (Item) {
-  
+function addCard(Item) {
   if (!localStorage.getItem("cartlist")) {
     console.log("io io io");
     localStorage.setItem("cartlist", JSON.stringify([Item]));
@@ -29,52 +39,61 @@ function addCard (Item) {
     //const updatedTable = [...tableData, Item];
     localStorage.setItem("cartlist", JSON.stringify(tableData));
   }
-  
-
 }
 
-const Product = props => {
+const Product = (props) => {
   //**  function ajout panier
 
   // ** Props
   const { data } = props;
-
+  // useEffect(() => {
+  //   console.log(props.data)
+  //   // console.log("details");
+  // }, [props]);
 
   // ** Condition btn tag
-  const CartBtnTag = data.isInCart ? Link : 'button'
+  const CartBtnTag = data.isInCart ? Link : "button";
 
   return (
-    <Row className='my-2'>
-      <Col className='d-flex align-items-center justify-content-center mb-2 mb-md-0' md='5' xs='12'>
-        <div className='d-flex align-items-center justify-content-center'>
-          <img className='img-fluid product-img' src={data.image} alt={data.nom} />
+    <Row className="my-2">
+      <Col
+        className="d-flex align-items-center justify-content-center mb-2 mb-md-0"
+        md="5"
+        xs="12"
+      >
+        <div className="d-flex align-items-center justify-content-center">
+          <img
+            className="img-fluid product-img"
+            src={data.image}
+            alt={data.nom}
+          />
         </div>
       </Col>
-      <Col md='7' xs='12'>
+      <Col md="7" xs="12">
         <h4>{data.nom}</h4>
-      
-        <div className='ecommerce-details-price d-flex flex-wrap mt-1'>
-          <h4 className='item-price me-1'>{data.prix}Ar</h4>
-          <ul className='unstyled-list list-inline'>
+        <small>{data._id}</small>
+        <div className="ecommerce-details-price d-flex flex-wrap mt-1">
+          <h4 className="item-price me-1">{data.prix}Ar</h4>
+          <ul className="unstyled-list list-inline">
             {new Array(5).fill().map((listItem, index) => {
               return (
-                <li key={index} className='ratings-list-item me-25'>
+                <li key={index} className="ratings-list-item me-25">
                   <Star
                     className={classnames({
-                      'filled-star': index + 1 <= data.rating,
-                      'unfilled-star': index + 1 > data.rating
+                      "filled-star": index + 1 <= data.rating,
+                      "unfilled-star": index + 1 > data.rating,
                     })}
                   />
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
         <CardText>
-          Available -<span className='text-success ms-25'>In stock</span>
+          Available -<span className="text-success ms-25">In stock</span>
         </CardText>
         <CardText>{data.description}</CardText>
-        <ul className='product-features list-unstyled'>
+        <ul className="product-features list-unstyled">
           {data.hasFreeShipping ? (
             <li>
               <ShoppingCart size={19} />
@@ -87,34 +106,53 @@ const Product = props => {
           </li>
         </ul>
         <hr />
-    
+
         <hr />
-        <div className='d-flex flex-column flex-sm-row pt-1'>
+        <div className="d-flex flex-column flex-sm-row pt-1">
           <Button
-           
-            className='btn-cart me-0 me-sm-1 mb-1 mb-sm-0'
-            color='primary'
-           onClick={() => addCard(data)}
-           
+            className="btn-cart me-0 me-sm-1 mb-1 mb-sm-0"
+            color="primary"
+            onClick={() => addCard(data)}
           >
-           Ajouter dans panier
+            Ajouter dans panier
           </Button>
-          
-          <UncontrolledButtonDropdown className='dropdown-icon-wrapper btn-share'>
-            <DropdownToggle className='btn-icon hide-arrow' color='secondary' caret outline>
+
+          <UncontrolledButtonDropdown className="dropdown-icon-wrapper btn-share">
+            <DropdownToggle
+              className="btn-icon hide-arrow"
+              color="secondary"
+              caret
+              outline
+            >
               <Share2 size={14} />
             </DropdownToggle>
             <DropdownMenu end>
-              <DropdownItem tag='a' href='/' onClick={e => e.preventDefault()}>
+              <DropdownItem
+                tag="a"
+                href="/"
+                onClick={(e) => e.preventDefault()}
+              >
                 <Facebook size={14} />
               </DropdownItem>
-              <DropdownItem tag='a' href='/' onClick={e => e.preventDefault()}>
+              <DropdownItem
+                tag="a"
+                href="/"
+                onClick={(e) => e.preventDefault()}
+              >
                 <Twitter size={14} />
               </DropdownItem>
-              <DropdownItem tag='a' href='/' onClick={e => e.preventDefault()}>
+              <DropdownItem
+                tag="a"
+                href="/"
+                onClick={(e) => e.preventDefault()}
+              >
                 <Youtube size={14} />
               </DropdownItem>
-              <DropdownItem tag='a' href='/' onClick={e => e.preventDefault()}>
+              <DropdownItem
+                tag="a"
+                href="/"
+                onClick={(e) => e.preventDefault()}
+              >
                 <Instagram size={14} />
               </DropdownItem>
             </DropdownMenu>
@@ -122,7 +160,7 @@ const Product = props => {
         </div>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

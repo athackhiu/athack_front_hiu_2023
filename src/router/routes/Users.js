@@ -24,8 +24,6 @@ const EcommerceWishlist = lazy(() => import('../../views/apps/ecommerce/wishlist
 const EcommerceCheckout = lazy(() => import('../../views/apps/ecommerce/checkout'))
 
 
-
-
 const UsersRoutes = [
   {
     path: '/user/page1',
