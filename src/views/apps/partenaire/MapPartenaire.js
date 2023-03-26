@@ -5,16 +5,15 @@ import GoogleMapReact from 'google-map-react';
 
 import Card from '@components/card-snippet'
 
-const tabMarkers=[
-  { id:1, lat: 37.820197, lng: -122.419416 ,title: "Origin"},
-  { id:2,lat: 37.8199286, lng: -122.4782551 ,title: "Destination"},
-  { id:3,lat: 37.8199300, lng: -122.419500 ,title: "Destination2"}
-]
 
 const MapPartenaire = () => {
+
   const [modal, setModal] = useState(null);
   const [directions,setDirections] = useState(null);
-  const [currentShop,setCurrentShop]=useState(null);
+  const [currentShop,setCurrentShop] = useState(null);
+
+  const [tabMarkers,setTabMarkers] = useState([
+]);
 
   const toggleModal = id => {
     if (modal !== id) {
@@ -23,22 +22,21 @@ const MapPartenaire = () => {
       setModal(null)
     }
   }
-  // const renderMarker = (array,mark,map,maps) => {
-  //   array.push(new maps.Marker({
-  //     position: { lat: mark.lat, lng: mark.lng },
-  //     map,
-  //     title: mark.title
-  //   }));
-  // }
+
 
   const renderAllMarkers = (map, maps, shops) => {
+    if (!shops || shops.length === 0) return; // Add this line to handle empty or null shops array
+   
+  
     shops.forEach(shop => {
+    
+      console.log(shop);
       const marker = new maps.Marker({
-        position: { lat: parseFloat(shop.lat), lng: parseFloat(shop.lng) },
+        position: { lat: parseFloat(shop.latitude), lng: parseFloat(shop.longitude) },
         map,
-        title: shop.title,
+        title: shop.nom,
         label: {
-          text: shop.title,
+          text: shop.nom,
           color: "white",
           strokeWeight: 1,
           fontWeight: "bold",
@@ -51,29 +49,35 @@ const MapPartenaire = () => {
       });
     });
   }
+  
 
 
-  useEffect(()=> {
-
-    const directionsService = new window.google.maps.DirectionsService();
-    const origin = new window.google.maps.LatLng(37.774929, -122.419416);
-    const destination = new window.google.maps.LatLng(37.8199286,-122.4782551);
-    
-    directionsService.route(
-      {
-        origin: origin,
-        destination: destination,
-        travelMode: window.google.maps.TravelMode.DRIVING
-      },
-      (result, status) => {
-        if (status === window.google.maps.DirectionsStatus.OK) {
-          setDirections(result);
-        } else {
-          console.error(`error fetching directions \${result}`);
-        }
-      }
-    );
+  useEffect(() => {
+      fetchPartenairesAPI().then(e=>{
+        setTabMarkers(e)
+      })
   }, []);
+
+
+  async function fetchPartenairesAPI() {
+    try {
+      const response = await fetch('https://athack-back-hiu-2023.vercel.app/partenaires/');
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.error('Error:', error);
+        return [];
+      }
+      const data = await response.json();
+      // console.log(data);
+      return data;
+    } catch (err) {
+      console.error('Error:', err);
+      return [];
+    }
+  }
+
+
 
   return (
     <div>
@@ -84,9 +88,13 @@ const MapPartenaire = () => {
           <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyBStuzSA7bW5n2wddHiCSNBG-TPWh-sd64" }}
             yesIWantToUseGoogleMapApiInternals={true}
-            defaultCenter={{ lat: 37.774929, lng: -122.419416 }}
-            defaultZoom={12}
-            onGoogleApiLoaded={({ map, maps }) => renderAllMarkers(map, maps,tabMarkers)}
+            defaultCenter={{ lat: -20.933333, lng: 47.516667 }}
+            defaultZoom={7}
+            onGoogleApiLoaded={({ map, maps }) => {
+              fetchPartenairesAPI().then(e => {
+                return renderAllMarkers(map, maps,e)
+              })
+            }}
           >
           </GoogleMapReact>
 

@@ -35,6 +35,28 @@ import product26 from '@src/assets/images/pages/eCommerce/26.png'
 const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
 const nextWeek = new Date(nextDay.getTime() + 7 * 24 * 60 * 60 * 1000)
 
+const getProduct = async () => {
+  try {
+    const response = await fetch('https://athack-back-hiu-2023.vercel.app/produits', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    console.error('Error adding shop:', error);
+    return null;
+  }
+};
+
+
+console.log("------------------------------------------");
+console.log(await getProduct());
+console.log("------------------------------------------");
+
+
+
 const data = {
   products: [
     {
