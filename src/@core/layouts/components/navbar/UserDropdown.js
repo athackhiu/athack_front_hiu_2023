@@ -49,7 +49,7 @@ const UserDropdown = () => {
       </DropdownToggle>
       <DropdownMenu end>
         
-        <DropdownItem tag={Link} to='/pages/profile'>
+        <DropdownItem tag={Link} to='/user/view'>
           <User size={14} className='me-75' />
           <span className='align-middle'>Profile</span>
         </DropdownItem>
