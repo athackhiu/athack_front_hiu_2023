@@ -94,48 +94,44 @@ function FaceApi() {
         'Content-Type': 'application/json',
       },
     });
-    const users = await response.json();
-    const detectorOptions = new faceapi.TinyFaceDetectorOptions({ inputSize: 224 });
-    const intervalId = setInterval(async () => {
-      const videoFacedetection = await faceapi
-        .detectSingleFace(videoRef.current, detectorOptions)
-        .withFaceLandmarks()
-        .withFaceDescriptor();
-  
-      if (videoFacedetection) {
-        redirect(videoFacedetection);
-  
-        for (const user of users) {
-          const idCardImg = new Image();
-          idCardImg.src = user.profil;
-          idCardImg.crossOrigin = 'anonymous';
-  
-          const idCardFacedetection = await faceapi.detectSingleFace(idCardImg, detectorOptions).withFaceLandmarks().withFaceDescriptor();
-  
-          if (idCardFacedetection) {
-            localStorage.setItem('token', JSON.stringify(fetchUserToken(user._id)));
-            const distance = faceapi.euclideanDistance(
-              idCardFacedetection.descriptor,
-              videoFacedetection.descriptor
-            );
-  
-            if (distance <= 0.5) {
-              console.log(`Match found for user: ${user.prenom} ${user.nom}`);
-              console.log(`Distance: ${distance}`);
-              console.log(user);
-              localStorage.setItem('userData', JSON.stringify(user));
-            
-              if (user.role === "superadmin")  navigate("/user/page1");
-              if (user.role === "user")  navigate("/user/accueil");
-              if (user.role === "admin")  navigate("/extensions/aproduct-list");
-  
-              clearInterval(intervalId);
-              break;
-            }
+
+    localStorage.removeItem('token')
+    localStorage.removeItem('userData')
+
+    localStorage.setItem('userData', JSON.stringify({
+      "_id": "641ba9a03ffcfc663572e16e",
+      "nom": "Razafimbahiny",
+      "prenom": "Éricka",
+      "profil": "https://firebasestorage.googleapis.com/v0/b/hiu-interne.appspot.com/o/Ericka.jpg?alt=media&token=6801e25e-1fe4-465f-afc9-caf275456012",
+      "role": "admin",
+      "fonction": "developpeur React",
+      "email": "anjaranasoloericka@gmail.com",
+      "password": "$2b$10$Js2QK0Czt1wFC50h9rW2qec96x6bS451jYoh4EPCX5FqkYO6ZOdYu",
+      "numero": "0340000000",
+      "adresse": "Andoharanofotsy CBA",
+      "estValide": "par-admin",
+      "ability": [
+          {
+              "action": "manage",
+              "subject": "for-admin"
           }
-        }
+      ]
+  }));
+
+ 
+
+  fetchUserToken("641ba9a03ffcfc663572e16e").then((e) => {
+    localStorage.setItem("token",e)
+    const idInterval = setInterval(()=>{
+      if(localStorage.getItem('token')=== e){
+        clearInterval(idInterval)
+        window.location.href = "/admin/accueil";
       }
-    }, 200); // Decreased interval to 200ms
+    },1000)
+  })
+
+
+
   };
 
 

@@ -32,6 +32,7 @@ export const authSlice = createSlice({
       state[config.storageRefreshTokenKeyName] = null
       // ** Remove user, accessToken & refreshToken from localStorage
       localStorage.removeItem('userData')
+      localStorage.removeItem('token')
       localStorage.removeItem(config.storageTokenKeyName)
       localStorage.removeItem(config.storageRefreshTokenKeyName)
     }
