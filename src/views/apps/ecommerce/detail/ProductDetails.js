@@ -29,6 +29,8 @@ import {
 } from "reactstrap";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../../configs/api/url";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = (props) => {
   //**  function ajout panier
@@ -41,13 +43,13 @@ const Product = (props) => {
   // }, [props]);
 
   // ** Condition btn tag
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const CartBtnTag = data.isInCart ? Link : "button";
   const [isLoadingAddCart, setIsLoadingAddCart] = useState(false);
-  const [quantite, setQuantite] = useState(0)
-  
+  const [quantite, setQuantite] = useState(0);
+
   function addCard() {
-    setIsLoadingAddCart(true)
+    setIsLoadingAddCart(true);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -65,15 +67,22 @@ const Product = (props) => {
 
     fetch(`${BASE_URL}/paniers/add`, requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error))
+      .then((result) => {
+        toast.success("Ajouté au panier avec succès.");
+        setTimeout(() => {
+          navigate(`/apps/ecommerce/shop`);
+        }, 2000);
+      })
+      .catch((error) => {
+        toast.error("Une erreur est survenue lors de l'ajout au panier.");
+      })
       .finally(() => {
-        setIsLoadingAddCart(false)
-        navigate(`/apps/ecommerce/shop`)
+        setIsLoadingAddCart(false);
       });
   }
   return (
     <Row className="my-2">
+      <ToastContainer />
       <Col
         className="d-flex align-items-center justify-content-center mb-2 mb-md-0"
         md="5"
@@ -135,7 +144,7 @@ const Product = (props) => {
             color="primary"
             onClick={() => addCard(data)}
           >
-            {isLoadingAddCart ? <Spinner /> : `Ajouter dans panier`}
+            {isLoadingAddCart ? <Spinner /> : `Ajouter au panier`}
           </Button>
 
           <UncontrolledButtonDropdown className="dropdown-icon-wrapper btn-share">

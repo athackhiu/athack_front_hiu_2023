@@ -6,7 +6,7 @@ import classnames from "classnames";
 import { Star, ShoppingCart, Heart } from "react-feather";
 
 // ** Reactstrap Imports
-import { Card, CardBody, CardText, Button, Badge } from "reactstrap";
+import { Card, CardBody, CardText, Button, Badge, Spinner } from "reactstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../../configs/api/url";
@@ -52,12 +52,12 @@ const ProductCards = (props) => {
     }
   };
   useEffect(() => {
-    initializeProducts()
+    initializeProducts();
   }, []);
   // ** Renders products
   const renderProducts = () => {
     // console.log(productsState);
-    if (productsState.length) {
+    if (productsState && productsState.length > 0) {
       return productsState.map((item) => {
         const CartBtnTag = item.isInCart ? Link : "button";
 
@@ -70,7 +70,7 @@ const ProductCards = (props) => {
               >
                 <img
                   style={{
-                    width: 150
+                    width: 150,
                   }}
                   className="img-fluid card-img-top"
                   src={item.image}
@@ -141,6 +141,8 @@ const ProductCards = (props) => {
           </Card>
         );
       });
+    } else {
+      return <Spinner />;
     }
   };
 

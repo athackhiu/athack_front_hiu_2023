@@ -25,12 +25,35 @@ const Payment = ({ total }) => {
   const [isLoadingPaiement, setIsLoadingPaiement] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(`333005837`);
   const [transactionId, setTransactionId] = useState("");
-  const notify = (message) => toast(`${message}`);
-  const navigate = useNavigate()
+  const notifySuccess = (message) => toast.success(`${message}`);
+  const notifyError = (message) => toast.error(`${message}`);
+  const navigate = useNavigate();
+
+  const validateCart = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("x-auth-token", localStorage.getItem("token"));
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://athack-back-hiu-2023.vercel.app/paniers/validate",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then(() => true)
+      .catch(() => false);
+  };
+
   const handleProceedToPaiement = () => {
+    validateCart()
     setIsLoadingPaiement(true);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("x-auth-token", localStorage.getItem('token'));
 
     const raw = JSON.stringify({
       msisdn: phoneNumber,
@@ -52,7 +75,7 @@ const Payment = ({ total }) => {
       .then((response) => response.json())
       .then((result) => {
         console.log(result.transaction_id);
-        notify('Verifiez le push ussd envoyé vers votre téléphone')
+        toast.info(`Consultez le push ussd envoyé vers votre téléphone`);
         setTransactionId(result.transaction_id);
       })
       .catch((error) => {
@@ -60,9 +83,11 @@ const Payment = ({ total }) => {
         setIsLoadingPaiement(false);
       });
   };
-  
+
   useEffect(() => {
     if (transactionId) {
+      toast.info(`Votre demande est en cours de traitement ...`);
+
       const intervalId = setInterval(() => {
         {
           const requestOptions = {
@@ -88,17 +113,25 @@ const Payment = ({ total }) => {
                 console.log("SUCCESS");
                 clearInterval(intervalId);
                 setIsLoadingPaiement(false);
-                notify("Paiement réussi avec succès.");
+                notifySuccess("Paiement réussi avec succès.");
                 setTimeout(() => {
-                  navigate('/apps/ecommerce/checkout')
-                }, 3000);
+                  navigate("/apps/ecommerce/shop");
+                }, 1000);
+              } else {
+                clearInterval(intervalId);
+                setIsLoadingPaiement(false);
+                notifyError(
+                  "Paiement annulé, veuillez reessayer ou contacter le service client."
+                );
               }
             })
             .catch((error) => {
               console.log(error);
               clearInterval(intervalId);
               setIsLoadingPaiement(false);
-              notify("Paiement annulé, veuillez contacter le service client.");
+              notifyError(
+                "Paiement annulé, veuillez reessayer ou contacter le service client."
+              );
             });
         }
       }, 5000);
@@ -172,7 +205,11 @@ const Payment = ({ total }) => {
                           marginRight: 10,
                         }}
                       />{" "}
-                      {transactionId ? <>Traitement de votre paiement ...</> : <>Vous allez recevoir un push ussd ...</>}
+                      {transactionId ? (
+                        <>Traitement de votre paiement ...</>
+                      ) : (
+                        <>Vous allez recevoir un push ussd ...</>
+                      )}
                     </div>
                   ) : (
                     `Procéder au paiement`
