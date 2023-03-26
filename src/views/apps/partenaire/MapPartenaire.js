@@ -37,7 +37,7 @@ const MapPartenaire = () => {
         title: shop.nom,
         label: {
           text: shop.nom,
-          color: "white",
+          color: "black",
           strokeWeight: 1,
           fontWeight: "bold",
         }
@@ -89,7 +89,7 @@ const MapPartenaire = () => {
             bootstrapURLKeys={{ key: "AIzaSyBStuzSA7bW5n2wddHiCSNBG-TPWh-sd64" }}
             yesIWantToUseGoogleMapApiInternals={true}
             defaultCenter={{ lat: -20.933333, lng: 47.516667 }}
-            defaultZoom={7}
+            defaultZoom={10}
             onGoogleApiLoaded={({ map, maps }) => {
               fetchPartenairesAPI().then(e => {
                 return renderAllMarkers(map, maps,e)
