@@ -44,7 +44,8 @@ const Product = (props) => {
   const navigate = useNavigate()
   const CartBtnTag = data.isInCart ? Link : "button";
   const [isLoadingAddCart, setIsLoadingAddCart] = useState(false);
-
+  const [quantite, setQuantite] = useState(0)
+  
   function addCard() {
     setIsLoadingAddCart(true)
     const myHeaders = new Headers();
@@ -52,16 +53,7 @@ const Product = (props) => {
 
     const raw = JSON.stringify({
       panierId: "641fd2a5596a2e26aed5aa25",
-      produit: {
-        _id: data._id,
-        nom: data.nom,
-        description: data.description,
-        prix: data.prix,
-        type: data.type,
-        image: data.image,
-        duree: data.duree,
-        __v: 0,
-      },
+      produit: data._id,
       quantite: 1,
     });
     const requestOptions = {
@@ -77,7 +69,6 @@ const Product = (props) => {
       .catch((error) => console.log("error", error))
       .finally(() => {
         setIsLoadingAddCart(false)
-        alert(`Ajouté avec succès`)
         navigate(`/apps/ecommerce/shop`)
       });
   }

@@ -102,7 +102,7 @@ const Checkout = () => {
       title: "Payment",
       subtitle: "Select Payment Method",
       icon: <CreditCard size={18} />,
-      content: <Payment stepper={stepper} />,
+      content: <Payment stepper={stepper} total={total} />,
     },
   ];
 

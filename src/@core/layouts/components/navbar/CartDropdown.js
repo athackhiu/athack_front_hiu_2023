@@ -77,7 +77,7 @@ const CartDropdown = () => {
   }, [dropdownOpen]);
   // ** Loops through Cart Array to return Cart Items
   const renderCartItems = () => {
-    if (cartState?.panierProduit) {
+    if (cartState?.panierProduit && cartState?.panierProduit.length > 0) {
       let total = 0;
       return (
         <Fragment>
@@ -119,7 +119,7 @@ const CartDropdown = () => {
                         downHandler={<Minus />}
                       />
                     </div>
-                    <h5 className="cart-item-price">${produit.prix * item.quantite}</h5>
+                    <h5 className="cart-item-price">{produit.prix * item.quantite} Ar</h5>
                   </div>
                 </div>
               );

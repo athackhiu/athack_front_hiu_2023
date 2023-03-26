@@ -4,7 +4,7 @@ import { PlusCircle } from 'react-feather'
 // ** Reactstrap Imports
 import { Row, Col, Form, Label, Input, Button, Card, CardHeader, CardTitle, CardBody, CardText } from 'reactstrap'
 
-const Payment = () => {
+const Payment = ({total}) => {
   return (
     <Form
       className='list-view product-checkout'
@@ -15,7 +15,7 @@ const Payment = () => {
       <div className='payment-type'>
         <Card>
           <CardHeader className='flex-column align-items-start'>
-            <CardTitle tag='h4'>Payment options</CardTitle>
+            <CardTitle tag='h4'>Options de paiement</CardTitle>
             <CardText className='text-muted mt-25'>Be sure to click on correct payment option</CardText>
           </CardHeader>
           <CardBody>
@@ -52,21 +52,15 @@ const Payment = () => {
           <CardBody>
             <ul className='list-unstyled price-details'>
               <li className='price-detail'>
-                <div className='details-title'>Price of 3 items</div>
-                <div className='detail-amt'>
-                  <strong>$699.30</strong>
-                </div>
-              </li>
-              <li className='price-detail'>
-                <div className='details-title'>Delivery Charges</div>
-                <div className='detail-amt discount-amt text-success'>Free</div>
+                <div className='details-title'>Charges de livraison</div>
+                <div className='detail-amt discount-amt text-success'>Gratuit</div>
               </li>
             </ul>
             <hr />
             <ul className='list-unstyled price-details'>
               <li className='price-detail'>
-                <div className='details-title'>Amount Payable</div>
-                <div className='detail-amt fw-bolder'>$699.30</div>
+                <div className='details-title'>A payer</div>
+                <div className='detail-amt fw-bolder'>{total} Ar</div>
               </li>
             </ul>
           </CardBody>

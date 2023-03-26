@@ -16,6 +16,7 @@ import {
   InputGroup,
   Input,
   InputGroupText,
+  Spinner,
 } from "reactstrap";
 
 // ** Styles
@@ -33,7 +34,7 @@ const Cart = (props) => {
     deleteWishlistItem,
     getCartItems,
     products,
-    total
+    total,
   } = props;
 
   // ** Function to convert Date
@@ -148,7 +149,14 @@ const Cart = (props) => {
   return (
     <div className="list-view product-checkout">
       <div className="checkout-items">
-        {products ? renderCart() : <h4>Your cart is empty</h4>}
+        {products && products.length > 0 ? (
+          renderCart()
+        ) : (
+          <>
+            <h4>Your cart is empty</h4>
+            {/* <Spinner /> */}
+          </>
+        )}
       </div>
       <div className="checkout-options">
         <Card>
@@ -157,7 +165,7 @@ const Cart = (props) => {
             <InputGroup className="input-group-merge coupons">
               <Input placeholder="Total" />
               <InputGroupText className="text-primary ms-0">
-                {total} Ar
+                <h1>{total} Ar</h1>
               </InputGroupText>
             </InputGroup>
             <hr />
