@@ -27,11 +27,9 @@ function FaceApi() {
 
   
   const startVideo = ()=>{
-    
     navigator.mediaDevices.getUserMedia({video:true})
     .then((currentStream)=>{
       videoRef.current.srcObject = currentStream
-      console.log("Start Location !!");
     })
     .catch((err)=>{
       console.log(err)
@@ -97,8 +95,11 @@ function FaceApi() {
       },
     });
     const users = await response.json();
-    const intervalId =  setInterval(async () => {
-      const videoFacedetection = await faceapi.detectSingleFace(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+    const detectorOptions = new faceapi.TinyFaceDetectorOptions({ inputSize: 224 });
+    const intervalId = setInterval(async () => {
+      const videoFacedetection = await faceapi
+        .detectSingleFace(videoRef.current, detectorOptions)
+        .withFaceLandmarks()
         .withFaceDescriptor();
   
       if (videoFacedetection) {
@@ -107,33 +108,37 @@ function FaceApi() {
         for (const user of users) {
           const idCardImg = new Image();
           idCardImg.src = user.profil;
-          idCardImg.crossOrigin = "anonymous";
+          idCardImg.crossOrigin = 'anonymous';
   
-          const idCardFacedetection = await faceapi
-            .detectSingleFace(idCardImg, new faceapi.TinyFaceDetectorOptions())
-            .withFaceLandmarks()
-            .withFaceDescriptor();
+          const idCardFacedetection = await faceapi.detectSingleFace(idCardImg, detectorOptions).withFaceLandmarks().withFaceDescriptor();
   
           if (idCardFacedetection) {
             localStorage.setItem('token', JSON.stringify(fetchUserToken(user._id)));
-            const distance = faceapi.euclideanDistance(idCardFacedetection.descriptor, videoFacedetection.descriptor);
+            const distance = faceapi.euclideanDistance(
+              idCardFacedetection.descriptor,
+              videoFacedetection.descriptor
+            );
   
             if (distance <= 0.5) {
-             
               console.log(`Match found for user: ${user.prenom} ${user.nom}`);
               console.log(`Distance: ${distance}`);
               console.log(user);
               localStorage.setItem('userData', JSON.stringify(user));
-             
-              navigate("/user/page1");
+            
+              if (user.role === "superadmin")  navigate("/user/page1");
+              if (user.role === "user")  navigate("/user/accueil");
+              if (user.role === "admin")  navigate("/extensions/aproduct-list");
+  
               clearInterval(intervalId);
               break;
             }
           }
         }
       }
-    }, 1000);
+    }, 200); // Decreased interval to 200ms
   };
+
+
 
   return (
     <div className={`theme-Primary`} key={1}>
