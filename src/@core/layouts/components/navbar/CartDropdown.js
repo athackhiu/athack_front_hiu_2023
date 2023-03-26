@@ -51,23 +51,7 @@ const CartDropdown = () => {
     toggle();
   };
 
-  const [cartState, setCartState] = useState({
-    _id: "641fd2a5596a2e26aed5aa25",
-    id_user: "641ba5c13ffcfc663572e16d",
-    date: "2023-03-26T05:05:41.781Z",
-    panierProduit: [
-      {
-        produit: {
-          _id: "641eea8fc0a2f221dfbc36b4",
-          nom: "Example Product",
-          prix: 10.99,
-        },
-        quantite: 2,
-        _id: "641fd3b32cc3b0a45e19d512",
-      },
-    ],
-    __v: 1,
-  });
+  const [cartState, setCartState] = useState({});
 
   const initializeCart = () => {
     const token = localStorage.getItem("token");
@@ -84,7 +68,7 @@ const CartDropdown = () => {
 
     fetch(`${BASE_URL}/paniers`, requestOptions)
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => setCartState(result))
       .catch((error) => console.log("error", error));
   };
   useEffect(() => {
@@ -94,7 +78,8 @@ const CartDropdown = () => {
   }, [dropdownOpen]);
   // ** Loops through Cart Array to return Cart Items
   const renderCartItems = () => {
-    if (store.cart.length) {
+    console.log(cartState)
+    if (cartState?.panierProduit) {
       let total = 0;
       return (
         <Fragment>
@@ -104,22 +89,22 @@ const CartDropdown = () => {
               wheelPropagation: false,
             }}
           >
-            {store.cart.map((item) => {
+            {cartState?.panierProduit.map((item) => {
               total += item.price;
 
               return (
                 <div key={item.id} className="list-item align-items-center">
                   <img
                     className="d-block rounded me-1"
-                    src={item.image}
-                    alt={item.name}
+                    src={item.produit._id}
+                    alt={item.produit.name}
                     width="62"
                   />
                   <div className="list-item-body flex-grow-1">
                     <X
                       size={14}
                       className="cart-item-remove"
-                      onClick={() => dispatch(deleteCartItem(item.id))}
+                      onClick={() => dispatch(deleteCartItem(item.produit._id))}
                     />
                     <div className="media-heading">
                       <h6 className="cart-item-title">
