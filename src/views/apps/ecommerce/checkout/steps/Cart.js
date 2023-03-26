@@ -11,10 +11,11 @@ import { Card, CardBody, CardText, Button, Badge, InputGroup, Input, InputGroupT
 
 // ** Styles
 import '@styles/react/libs/input-number/input-number.scss'
+import { useEffect, useState } from 'react'
 
 const Cart = props => {
   // ** Props
-  const { products, stepper, deleteCartItem, dispatch, addToWishlist, deleteWishlistItem, getCartItems } = props
+  const { stepper, deleteCartItem, dispatch, addToWishlist, deleteWishlistItem, getCartItems } = props
 
   // ** Function to convert Date
   const formatDate = (value, formatting = { month: 'short', day: 'numeric', year: 'numeric' }) => {
@@ -32,27 +33,37 @@ const Cart = props => {
     dispatch(getCartItems())
   }
 
+  // ** useEffect
+  const [produit, setProduct] = useState();
+
+  useEffect(() => {
+    console.log("huhuhuhu");
+    setProduct(JSON.parse(localStorage.getItem("cartlist")));
+    //console.log(JSON.parse(localStorage.getItem("cartlist")));
+    /*if (localStorage.getItem("cartlist")) {
+      console.log("huhuhuhuhu");
+      console.log(JSON.parse(localStorage.getItem("cartlist")));
+      
+    }*/
+  }, [])
+
+
   // ** Render cart items
   const renderCart = () => {
-    return products.map(item => {
+    return produit.map(item => {
       return (
-        <Card key={item.name} className='ecommerce-card'>
+        <Card key={item.nom} className='ecommerce-card'>
           <div className='item-img'>
             <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>
-              <img className='img-fluid' src={item.image} alt={item.name} />
+              <img className='img-fluid' src={item.image} alt={item.nom} />
             </Link>
           </div>
           <CardBody>
             <div className='item-name'>
               <h6 className='mb-0'>
-                <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>{item.name}</Link>
+                <Link to={`/apps/ecommerce/product-detail/${item.slug}`}>{item.nom}</Link>
               </h6>
-              <span className='item-company'>
-                By
-                <a className='ms-25' href='/' onClick={e => e.preventDefault()}>
-                  {item.brand}
-                </a>
-              </span>
+             
               <div className='item-rating'>
                 <ul className='unstyled-list list-inline'>
                   {new Array(5).fill().map((listItem, index) => {
@@ -90,7 +101,7 @@ const Cart = props => {
           <div className='item-options text-center'>
             <div className='item-wrapper'>
               <div className='item-cost'>
-                <h4 className='item-price'>${item.price}</h4>
+                <h4 className='item-price'>${item.prix}</h4>
                 {item.hasFreeShipping ? (
                   <CardText className='shipping'>
                     <Badge color='light-success' pill>
@@ -125,7 +136,7 @@ const Cart = props => {
 
   return (
     <div className='list-view product-checkout'>
-      <div className='checkout-items'>{products.length ? renderCart() : <h4>Your cart is empty</h4>}</div>
+      <div className='checkout-items'>{produit ? renderCart() : <h4>Your cart is empty</h4>}</div>
       <div className='checkout-options'>
         <Card>
           <CardBody>
@@ -171,7 +182,7 @@ const Cart = props => {
               <Button
                 block
                 color='primary'
-                disabled={!products.length}
+                //disabled={!produit.length}
                 onClick={() => stepper.next()}
                 classnames='btn-next place-order'
               >

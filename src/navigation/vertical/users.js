@@ -1,5 +1,5 @@
 // ** Icons Import
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield } from 'react-feather'
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, User, Home, AtSign } from 'react-feather'
 var ability = JSON.parse(localStorage.getItem("userData"))?.ability || [{ action: "lol" }];
 
 
@@ -7,7 +7,6 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
         {
             header: 'Users'
         },
-       
         {
             id: 'user-page1',
             title: 'Page 1',
@@ -16,6 +15,54 @@ export default  JSON.parse(localStorage.getItem("userData"))?.role !== "superadm
             resource: 'for-user',
             navLink: '/user/page1'
         } ,
+        {
+            id: 'user-faq',
+            title: 'FAQ',
+            icon: <AtSign size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/faq'
+        },
+        {
+            id: 'user-accueil',
+            title: 'Accueil',
+            icon: <Home size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/accueil'
+        },
+        {
+            id: 'user-profil',
+            title: 'Profil',
+            icon: <User size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/view'
+        },
+        {
+            id: 'user-listcagnotte',
+            title: 'Liste cagnotte',
+            icon: <Shield size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/listcagnotte'
+        } ,
+        {
+            id: 'user-partenaire',
+            title: 'Mes Partenaires',
+            icon: <Shield size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/partenaire'
+        } ,
+        {
+            id: 'user-paiement',
+            title: 'Paiement',
+            icon: <Shield size={12} />,
+            action: 'manage',
+            resource: 'for-user',
+            navLink: '/user/facture'
+        },
         {
             id: 'user-page2',
             title: 'Page 2',

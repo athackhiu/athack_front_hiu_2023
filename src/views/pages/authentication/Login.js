@@ -47,6 +47,7 @@ import illustrationsDark from '@src/assets/images/pages/login-v2-dark.svg'
 // ** Styles
 import '@styles/react/pages/page-authentication.scss'
 import { BASE_URL } from '../../../configs/api/url'
+import FaceApi from '../../components/modalface/FaceApi'
 
 const ToastContent = ({ t, name, role }) => {
   return (
@@ -225,13 +226,13 @@ const Login = () => {
                 <p>
                 -------  Pour ce connecter en tant qu'administrateur : <br></br>
                   <small className='me-50'>
-                    <span className='fw-bold'>Admin:</span> admin@hiu.com | eETU00XXXX@
+                    <span className='fw-bold'>Admin:</span> anjaranasoloericka@gmail.com | eETU00XXXX@
                   </small>
                 </p>
                 <p>
                 -------Pour ce connecter en tant qu'utilisateur: <br></br>
                   <small className='me-50'>
-                    <span className='fw-bold'>User:</span> user@hiu.com | eETU00XXXX@
+                    <span className='fw-bold'>User:</span> liantsurakotonirina@gmail.com | eETU00XXXX@
                   </small>
                 </p>
               </div>
@@ -292,8 +293,10 @@ const Login = () => {
                 </Label>
               </div>
               <Button type='submit' color='primary' block>
-                Sign in
+                Se Connecter
               </Button>
+              <br/>
+              <FaceApi/>
             </Form>
             <p className='text-center mt-2'>
               <span className='me-25'>New on our platform?</span>

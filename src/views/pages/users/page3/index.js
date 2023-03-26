@@ -1,20 +1,24 @@
+import React, { useState } from "react";
+import Tesseract from "tesseract.js";
 
-import { Fragment, useEffect } from 'react'
-import { Row, Col, CardBody, CardText , CardTitle } from 'reactstrap'
+function App() {
+  const [ocrResult, setOcrResult] = useState("");
 
-import Card from '@components/card-snippet'
+  const handleOcr = async (event) => {
+    const file = event.target.files[0];
 
+    if (file) {
+      const { data } = await Tesseract.recognize(file, "eng");
+      setOcrResult(data.text);
+    }
+  };
 
-const Page3 = () => {
   return (
-    <Row>
-      <Col md='6' sm='12'>
-        <Card title={"go"} >
-          <h1>Page3</h1>
-        </Card>
-      </Col>
-    </Row>
-  )
+    <div>
+      <input type="file" accept="image/*" onChange={handleOcr} />
+      <p>{ocrResult}</p>
+    </div>
+  );
 }
 
-export default Page3;
+export default App;

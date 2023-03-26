@@ -15,6 +15,7 @@ const ImportComponent = lazy(() => import('../../views/extensions/import-export/
 const ExportComponent = lazy(() => import('../../views/extensions/import-export/Export'))
 const ExportSelected = lazy(() => import('../../views/extensions/import-export/ExportSelected'))
 
+
 const ExtensionsRoutes = [
   {
     element: <SweetAlert />,

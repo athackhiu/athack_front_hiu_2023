@@ -16,6 +16,8 @@ import UserInfoCard from './UserInfoCard'
 
 // ** Styles
 import '@styles/react/apps/app-users.scss'
+import UserProjectsList from './UserProjectsList'
+import PaiementHistory from './PaiementHistory'
 
 const UserView = () => {
   // ** Store Vars
@@ -38,25 +40,18 @@ const UserView = () => {
     }
   }
 
-  return store.selectedUser !== null && store.selectedUser !== undefined ? (
+  return  (
     <div className='app-user-view'>
       <Row>
         <Col xl='4' lg='5' xs={{ order: 1 }} md={{ order: 0, size: 5 }}>
-          <UserInfoCard selectedUser={store.selectedUser} />
-          <PlanCard />
+          <UserInfoCard selectedUser={localStorage.getItem("userData")} />
         </Col>
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          <UserTabs active={active} toggleTab={toggleTab} />
+            <PaiementHistory />
         </Col>
       </Row>
     </div>
-  ) : (
-    <Alert color='danger'>
-      <h4 className='alert-heading'>User not found</h4>
-      <div className='alert-body'>
-        User with id: {id} doesn't exist. Check list of all Users: <Link to='/apps/user/list'>Users List</Link>
-      </div>
-    </Alert>
-  )
+  ) 
+
 }
 export default UserView
